@@ -20,9 +20,9 @@ body {
     margin: 0;
 }
 .top {
-    padding-top: 80px;
+    padding-top: 12vh;
     color: white !important;
-    height: 60%;
+    height: 50%;
     width: 100%;
     background-image: url(https://www.transparenttextures.com/patterns/subtle-grey.png), linear-gradient(to top, #7c4dff, #7c4dff);
     border-bottom-left-radius: 50% 6vw;
@@ -33,14 +33,14 @@ body {
 }
 
 .top + .middle {
-    height: 80vh;
+    height: 90vh;
     margin-top: -40vh;
     z-index: 1;
     position: relative;
 }
 
 .middle {
-    clip-path: polygon( 0 0, 100% -0, 100% 100%, 50% calc(60vh), 0 100%);
+    clip-path: polygon( 0 0, 100% -0, 100% 100%, 50% calc(70vh), 0 100%);
     background: white;
 }
 
@@ -52,18 +52,19 @@ body {
     height: 100%;
 }
 
-.middle .row > .col-6 {
+.middle .row > div {
     padding-top: 47vh;
     color: #00a18e;
 }
 
-.middle .row > .col-6 > h2 {
+.middle .row > div > h2 {
     color: #00a18e;
 }
 
 .bottom {
-    padding-top: 35vh;
+    padding-top: 37vh;
     background: url(https://www.transparenttextures.com/patterns/gplay.png),linear-gradient(to top, #00a18e, #7c4dff);
     color: white !important;
     margin-top: -40vh;
+    height: 100vh;
 }
