@@ -1,0 +1,69 @@
+html {
+    height: 100%;
+    width: 100%;
+    font-family: "Lato", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Lato", sans-serif !important;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 500;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+.top {
+    padding-top: 80px;
+    color: white !important;
+    height: 60%;
+    width: 100%;
+    background-image: url(https://www.transparenttextures.com/patterns/subtle-grey.png), linear-gradient(to top, #7c4dff, #7c4dff);
+    border-bottom-left-radius: 50% 6vw;
+    border-bottom-right-radius: 50% 6vw;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0px 7px 20px rgba(0,0,0,0.3);
+}
+
+.top + .middle {
+    height: 80vh;
+    margin-top: -40vh;
+    z-index: 1;
+    position: relative;
+}
+
+.middle {
+    clip-path: polygon( 0 0, 100% -0, 100% 100%, 50% calc(60vh), 0 100%);
+    background: white;
+}
+
+.middle .container {
+    height: 100%;
+}
+
+.middle .row {
+    height: 100%;
+}
+
+.middle .row > .col-6 {
+    padding-top: 47vh;
+    color: #00a18e;
+}
+
+.middle .row > .col-6 > h2 {
+    color: #00a18e;
+}
+
+.bottom {
+    padding-top: 35vh;
+    background: url(https://www.transparenttextures.com/patterns/gplay.png),linear-gradient(to top, #00a18e, #7c4dff);
+    color: white !important;
+    margin-top: -40vh;
+}
