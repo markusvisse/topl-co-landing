@@ -40,9 +40,9 @@ body {
     margin: 0;
 }
 .top {
-    padding-top: 15vh;
+    padding-top: 10vh;
     color: white !important;
-    height: 50%;
+    height: 40%;
     width: 100%;
     background-image: url(https://www.transparenttextures.com/patterns/subtle-grey.png), linear-gradient(to top, #551AFF, #7c4dff);
     border-bottom-left-radius: 50% 6vw;
