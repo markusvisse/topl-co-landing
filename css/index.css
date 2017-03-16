@@ -8,24 +8,29 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Lato", sans-serif !important;
 }
 
+
 h1 {
-    font-size: 7vh !important;
+    font-size: calc(1.5vw + 45px) !important;
 }
 
 h2 {
-    font-size: 5.25vh !important;
+    font-size: calc(0.9vw + 32px) !important;
 }
 
 h3 {
-    font-size: 4.5vh !important;
+    font-size: calc(0.8vw + 30px) !important;
 }
 
 h4 {
-    font-size: 3vh !important;
+    font-size: calc(0.67vw + 24px) !important;
 }
 
 h5 {
-    font-size: 2.75vh !important;
+    font-size: calc(0.5vw + 20px) !important;
+}
+
+a,p {
+    font-size: calc(0.45vw + 18px) !important;
 }
 
 @media(max-device-width: 500px) {
@@ -54,32 +59,6 @@ h5 {
     }
 }
 
-@media(max-width: 767px) {
-    h1 {
-        font-size: 45px !important;
-    }
-
-    h2 {
-        font-size: 32px !important;
-    }
-
-    h3 {
-        font-size: 30px !important;
-    }
-
-    h4 {
-        font-size: 24px !important;
-    }
-
-    h5 {
-        font-size: 20px !important;
-    }
-
-    p,a {
-        font-size: 18px !important;
-    }
-}
-
 header {
     position: absolute;
     top: 0;
@@ -92,9 +71,10 @@ body {
     margin: 0;
 }
 .top {
-    padding-top: 10vh;
+    padding-top: calc(5vh + 80px);
     color: white !important;
     height: 40%;
+    min-height: 400px;
     width: 100%;
     background-image: url("../images/subtle-grey.png"), linear-gradient(to top, #551AFF, #7c4dff);
     border-bottom-left-radius: 50% 6vw;
@@ -109,15 +89,14 @@ body {
 }
 
 .top + .middle {
-    height: calc(80vh + 100px);
-    min-height: 300px;
-    margin-top: -40vh;
+    height: calc(30vw + 300px);
+    margin-top: -25vw;
     z-index: 1;
     position: relative;
 }
 
 .middle {
-    clip-path: polygon(0 0, 100% -0, 100% 100%, 50% calc(72vh + 50px), 0 100%);
+    clip-path: polygon(0 0, 100% -0, 100% 100%, 50% calc(25vw + 300px), 0 100%);
     background: white;
 }
 
@@ -130,11 +109,27 @@ body {
 }
 
 .middle .row > div {
-    padding-top: 47vh;
+    padding-top: calc(25vw + 30px);
     color: #00a18e;
 }
 
 .middle .row > div > h2 {
+    color: #00a18e;
+}
+
+.middle .link-container {
+    margin-top: -0.25vw;
+}
+
+.middle .link-title {
+    font-size: calc(0.67vw + 24px) !important;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    color: #666666;
+}
+
+.middle .link {
+    font-size: calc(0.8vw + 18px) !important;
     color: #00a18e;
 }
 
@@ -162,3 +157,37 @@ svg {
     position: absolute;
 }
 
+@media (min-width: 1600px) {
+    .container {
+        width: 1440px;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        width: 1600px;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 2160px) {
+    .container {
+        width: 1920px;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 2560px) {
+    .container {
+        width: 2160px;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 3840px) {
+    .container {
+        width: 2560px;
+        max-width: 100%;
+    }
+}
