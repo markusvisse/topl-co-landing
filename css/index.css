@@ -1,6 +1,7 @@
 html {
     height: 100%;
     width: 100%;
+    background-color: white;
     font-family: "Lato", sans-serif;
 }
 
@@ -30,7 +31,7 @@ h5 {
 }
 
 a,p {
-    font-size: calc(0.45vw + 18px) !important;
+    font-size: calc(0.45vw + 14px) !important;
 }
 
 @media(max-device-width: 500px) {
@@ -189,5 +190,88 @@ svg {
     .container {
         width: 2560px;
         max-width: 100%;
+    }
+}
+
+.section {
+    padding-top: 5%;
+    min-height: 800px;
+    padding-bottom: 10%;
+}
+
+.headshots {
+    margin-top: 7%;
+}
+
+.headshots img {
+    transition: width 0.2s ease-in, margin 0.2s ease-in;
+    box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.25);
+    width: 100%;
+    z-index:1;
+    position:relative;
+}
+
+.headshots img:hover {
+    transition: width 0.2s ease-in, margin 0.2s ease-in;
+    box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.25);
+    width: 110%;
+    margin-left: -5%;
+    margin-top: -5%;
+    z-index: 5;
+    cursor: pointer;
+}
+
+
+.headshots .title {
+    font-size: calc(0.2vw + 14px);
+    margin-top: 2%;
+    margin-bottom: 15%;
+}
+
+.headshots p {
+    margin-bottom: 10%;
+    font-size: calc(0.2vw + 14px);
+}
+
+.headshots .title span {
+    color: #7c4dff;
+    font-size: calc(0.2vw + 13px);
+    font-variant: small-caps;
+}
+
+
+#tooltip {
+    background:#4E6DD5;
+    color:#ffffff;
+    padding:16px;
+    max-width: 60vw;
+    font-size: calc(0.2vw + 12px);
+    line-height: 18px;
+    left: 20vw;
+
+}
+
+@media(max-device-width: 500px) {
+    .headshots .title {
+        font-size: 36px;
+    }
+
+    .headshots .title span {
+        font-size: 32px;
+    }
+
+
+    #tooltip {
+        font-size: 32px;
+        line-height: 36px;
+        max-width: 90vw;
+        left: 5vw;
+    }
+}
+
+
+@media(max-height: 500px) {
+    .headshots img {
+        width: 50vw;
     }
 }
