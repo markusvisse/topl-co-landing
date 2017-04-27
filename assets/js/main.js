@@ -254,4 +254,14 @@
 
     })
 
+
+	$('.slow-scroll').click(function(e) {
+		e.preventDefault();
+		var that = this;
+        $('html, body').animate({
+            scrollTop: $('#' + that.href.split('#')[1]).offset().top
+        }, 10000);
+	});
+
+
 })(jQuery);

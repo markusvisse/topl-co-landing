@@ -4077,7 +4077,7 @@ body.is-loading #intro:after {
 a#flowScroll span {
 	position: relative;
 	display: block;
-	margin-top: 20vh;
+	margin-top: 10vh;
 	left: 50%;
 	width: 30px;
 	height: 50px;

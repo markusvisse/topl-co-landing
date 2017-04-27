@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="assets/vertical-timeline/css/reset.css"> <!-- CSS reset -->
 		<link rel="stylesheet" href="assets/vertical-timeline/css/style.css"> <!-- Resource style -->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/animated/svg-animation.css" />
 		<script src="https://use.fontawesome.com/9fd58cfe9d.js"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -50,26 +51,31 @@
 					</ul>
 				</div>
 			</section>
-
 			<section id="flow" class="wrapper fullscreen light fade-up">
 				<div class="inner">
 					<h2>Flow</h2>
 					<p>Let's take you through a typical investment sequence.</p>
 					<ul class="actions" style="text-align:center">
-						<li><a id="flowScroll" href="#"><span></span>Scroll</a></li>
+						<li><a id="flowScroll" class="slow-scroll" href="#features"><span></span>Scroll</a></li>
 					</ul>
+				</div>
+				<div id="container">
+					<div id="block">
+						Hi there !
+						<object id="e" data="assets/animated/testing.svg" type="image/svg+xml"></object>
+					</div>
 				</div>
 			</section>
 
 			<section id="features" class="wrapper fullscreen style3 fade-up">
 				<div class="inner">
 						<h2>Features</h2>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+						<p>The Topl network is committed to providing a secure, accessible, and powerful method to invest. Based on those ideals, we're focusing development on the following. </p>
 						<div class="features">
 							<section>
 								<span class="icon major fa-chain"></span>
 								<h3 class="bold">Investment Smart Contract Templating</h3>
-								<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								<p>Investors and producers agree to contract terms that are enforced on the chain. These contracts automatically apply reputation modifiers and submit notifications to participants as deadlines approach and information becomes available.</p>
 							</section>
 							<section>
 								<span class="icon major fa-diamond"></span>
@@ -79,17 +85,17 @@
 							<section>
 								<span class="icon major fa-code"></span>
 								<h3 class="bold">Fundamentally Stable Units</h3>
-								<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								<p>Because polys are backed by a basket of commodities, their value naturally tracks the commodity market as a whole, avoiding volatility from speculation. Polys don't require trust in a market maker of last resort, either.</p>
 							</section>
 							<section>
 								<span class="icon major fa-lock"></span>
 								<h3 class="bold">Interoperable Tokens</h3>
-								<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								<p>Polys and arbits will both be available as standard ERC-20 tokens on Ethereum as well as other chains that allow the transfer of tokenized value. The ability to move tokens between these chains and Topl will be handled through off-chain cryptographic transactions.</p>
 							</section>
 							<section>
 								<span class="icon major fa-cog"></span>
 								<h3 class="bold">Granular Privacy Controls</h3>
-								<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								<p>Investment activities are naturally expected to be kept private. However, information needs to be accessible when potential investment arises. We enable truly anonymous investment agreements to coexist with the need </p>
 							</section>
 							<section>
 								<span class="icon major fa-desktop"></span>
@@ -332,7 +338,7 @@
 		</footer>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -341,7 +347,12 @@
 		<script src="assets/js/skel.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="assets/animated/svg-animation.js"></script>
 
 	</body>
 </html>

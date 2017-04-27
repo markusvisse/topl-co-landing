@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ScrollMagic #1 Setup</title>
+	
+	<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+	
+	#container {
+		margin: 55vh 0;
+		padding: 50px;
+		outline: 1px dashed orange;
+	}
+
+	#block {
+		padding: 10px;
+		border: 1px solid black;
+		font-family: Helvetica;
+	}
+	
+	#Group1{
+		transition: transform 0.3s ease-out;
+		transform: scale(1);
+	}
+	#lower0.zap {
+		transform: scale(2.5, 0);
+	}
+	#upper0.zap {
+		transform: scale(2.5, 0);
+	}
+	
+	#Group2 {
+		transition: transform 0.3s ease-in;
+		transform: scale(0, 2.5);
+	}
+	#Group2.zap1 {
+		transform: scale(1);
+	}
+	#Group2.out {
+		transform: scale(0, 2.5);
+	}
+
+	#Group3 {
+		transition: transform 0.3s ease-in;
+		transform: scale(0, 2.5);
+	}
+	#Group3.zap1 {
+		transform: scale(1);
+	}
+
+	#Group4 {
+		transition: transform 0.3s ease-in;
+		transform: scale(0, 2.5);
+	}
+	#Group4.zap1 {
+		transform: scale(1);
+	}
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.js"></script>
+</head>
+
+<body>
+    This is my page
+	<div id="container">
+		<div id="block">
+			Hi there !
+			<object id="e" data="testing.svg" type="image/svg+xml"></object>
+		</div>
+	</div>
+	
+	<script>
+    // Our code goes here
+	
+	$(window).load(function() {
+		var teste = $("#e")
+		$('#e').replaceWith($($('#e')[0].contentDocument.documentElement).clone());
+		
+		function pathPrepare ($el) {
+			var lineLength = $el[0].getTotalLength();
+			$el.css("stroke-dasharray", lineLength);
+			$el.css("stroke-dashoffset", lineLength);
+		}
+		
+		function calcLength ($el) {
+			return $el[0].getTotalLength()
+		}
+		//var $Group2 = $("path#_x3C_Group1_x3E_")
+		
+		// pathPrepare($Group2)
+		$.fn.getPath = function () {
+			if (this.length != 1) throw 'Requires one element.';
+
+			var path, node = this;
+			while (node.length) {
+				var realNode = node[0], name = realNode.localName;
+				if (!name) break;
+				name = name.toLowerCase();
+
+				var parent = node.parent();
+
+				var siblings = parent.children(name);
+				if (siblings.length > 1) { 
+					name += ':eq(' + siblings.index(realNode) + ')';
+				}
+
+				path = name + (path ? '>' + path : '');
+				node = parent;
+			}
+
+			return path;
+		};
+		var controller = new ScrollMagic.Controller();
+		var agreementScene = new ScrollMagic.Scene({
+			triggerElement: "#block", offset: 500
+		})
+		.setClassToggle("#lower0", "zap")
+		.addIndicators({name: "1 - add a class"}) // add indicators (requires plugin)
+		.addTo(controller);
+		
+		var producerScene = new ScrollMagic.Scene({
+			triggerElement: "#block", offset: 500
+		})
+		.setClassToggle("#Group2", "zap1")
+		.addIndicators({name: "2 - add a class"}) // add indicators (requires plugin)
+		.addTo(controller);
+
+		var producerScene = new ScrollMagic.Scene({
+			triggerElement: "#block", offset: 1000
+		})
+		.setClassToggle("#Group3", "zap1")
+		.addIndicators({name: "3 - add a class"}) // add indicators (requires plugin)
+		.addTo(controller);
+
+		var producerScene = new ScrollMagic.Scene({
+			triggerElement: "#block", offset: 1500
+		})
+		.setClassToggle("#Group4", "zap1")
+		.addIndicators({name: "4 - add a class"}) // add indicators (requires plugin)
+		.addTo(controller);
+		
+		var agreementScene = new ScrollMagic.Scene({
+			triggerElement: "#block", offset: 1500
+		})
+		.setClassToggle("#upper0", "zap")
+		.addIndicators({name: "5 - Remove Upper Zero"}) // add indicators (requires plugin)
+		.addTo(controller);
+		// var producerSceneDelete = new ScrollMagic.Scene({
+		// 	triggerElement: "#block", offset: 1000
+		// })
+		// .setClassToggle("#Group2", "out")
+		// .addIndicators({name: "2 - add a class"}) // add indicators (requires plugin)
+		// .addTo(controller);
+		
+		var containerScene = new ScrollMagic.Scene({
+			triggerElement: '#container',
+			offset: "300",
+			duration: "1500"
+		})
+		.setPin('#block')
+		.addIndicators()
+		.addTo(controller);
+	});
+	
+    </script>
+</body>
+</html>
