@@ -81,9 +81,8 @@ $(window).load(function() {
     // .addTo(controller);
 
     var containerScene = new ScrollMagic.Scene({
-        triggerElement: '#container',
-        offset: "50",
-        duration: "1500"
+        triggerElement: '#startAnimation',
+        offset: "400"
     })
     .setPin('#block')
     .addIndicators()

@@ -1690,7 +1690,7 @@ a:hover {
 }
 
 .light a:hover {
-	color: #222222;
+	color: #7c4dff;
 }
 
 strong, b {
@@ -1934,9 +1934,9 @@ button,
 	transition: border-color 0.2s ease;
 	background-color: transparent;
 	border: solid 1px !important;
-	border-color: rgba(0, 0, 0, 0.15) !important;
+	border-color: #7c4dff !important;
 	border-radius: 3em;
-	color: #ffffff !important;
+	color: #7c4dff !important;
 	cursor: pointer;
 	display: inline-block;
 	font-size: 0.6em;
@@ -4006,10 +4006,6 @@ body.is-loading #sidebar nav ul li {
 	border-radius: 7px;
 }
 
-.light .button {
-	color: #222 !important;
-}
-
 .button:after {
 	border-radius: 7px;
 }
@@ -4074,7 +4070,7 @@ body.is-loading #intro:after {
 
 }
 
-a#flowScroll span {
+a.flow-scroll span {
 	position: relative;
 	display: block;
 	margin-top: 10vh;
@@ -4086,7 +4082,7 @@ a#flowScroll span {
 	border-radius: 50px;
 	box-sizing: border-box;
 }
-a#flowScroll span::before {
+a.flow-scroll span::before {
 	position: absolute;
 	top: 10px;
 	left: 50%;
@@ -4101,11 +4097,11 @@ a#flowScroll span::before {
 	box-sizing: border-box;
 }
 
-.light a#flowScroll span {
+.light a.flow-scroll span {
 	border: 2px solid #222222;
 }
 
-.light a#flowScroll span::before {
+.light a.flow-scroll span::before {
 	background-color: #222222;
 }
 
