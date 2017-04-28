@@ -3360,7 +3360,7 @@ table.alt tfoot {
 }
 
 .wrapper.light {
-	background-color: white;
+	background: linear-gradient(150deg, #ffffff, #f3f3f3);
 	color: #222222 !important;
 }
 
@@ -3664,6 +3664,20 @@ body.is-ie .wrapper.fullscreen {
 
 body.is-ie #sidebar > .inner {
 	height: 100%;
+}
+
+#sidebar .sidebarLogo {
+	width: 50%;
+	margin-left: 50%;
+	margin-top: -7vh;
+	margin-bottom: 7vh;
+	display:none;
+}
+
+@media(min-width:1280px) {
+	#sidebar .sidebarLogo {
+		display: block;
+	}
 }
 
 #sidebar nav > ul {

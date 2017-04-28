@@ -247,9 +247,12 @@
             //make these go away
             $miniProfile.fadeToggle();
 
-            $('html, body').animate({
-                scrollTop: $('#mainDescription').offset().top
-            }, 500);
+            setTimeout(function() {
+                $('html, body').animate({
+                    scrollTop: $('#mainDescription').offset().top - 20
+                }, 1000);
+			}, 200)
+
         });
 
     })
