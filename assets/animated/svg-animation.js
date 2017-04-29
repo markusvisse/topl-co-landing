@@ -17,108 +17,99 @@ $(window).load(function() {
 	pathPrepare($line1); //pathPrepare($line2);
 
     var controller = new ScrollMagic.Controller();
-	
-	var tween = TweenMax.to($line1, 0.5, {strokeDashoffset: 0, strokeDasharray: "4,2,4,2,4,2", drawSVG: '100%', ease:Linear.easeNone})
+
+
+    /* Step 1: Request for Investment */
+    var connectProducerToBlock = TweenMax.to($line1, 0.1, {strokeDashoffset: 0, strokeDasharray: "4,2,4,2,4,2", drawSVG: '100%', ease:Linear.easeNone, immediateRender: false});
+    var showProducer = TweenMax.to("#Producer", 0.5, {className: 'visible', immediateRender: false});
+    var showBlockGroup1 = TweenMax.to("#BlockGroup1", 0.5, {className: 'zap', immediateRender: false});
+
+    var step1timeline = new TimelineMax();
+
+    step1timeline
+        .add(connectProducerToBlock)
+        .add(showProducer)
+        .add(showBlockGroup1);
+
 	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 400
-    }).setTween(tween).addIndicators({name: "1 - Draw Line 1"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 500
+        triggerElement: "#step1", offset: 300
     })
-	.setClassToggle("#BlockGroup1", "zap")
-	.addIndicators({name: "2 - add BlockGroup1"})
+    .setTween(step1timeline)                                                            // Display broadcast to block
+    .addIndicators({name: "Step 1: Request for Investment"})
+    .addTo(controller);
+
+
+	/* Step 2: Contract Negotiation */
+	var step2timeline = new TimelineMax();
+    var eraseBlockLine = TweenMax.to($line1, 0.5, {autoAlpha: 0, display: "none"});
+    var showInvestor = TweenMax.to("#Investor", 0.5, {autoAlpha: 1, display: "block"});
+    var connectToInvestor = TweenMax.to($line2, 0.5, {autoAlpha: 1, display: "block"});
+    var showLetterOfEngagement = TweenMax.to("#LetterOfEngagement", 0.5, {autoAlpha: 1, display: "block"}); // TODO apply some sort of duration to this
+    var hideLetterOfEngagement = TweenMax.to("#LetterOfEngagement", 0.5, {autoAlpha: 0, display: "none"});
+    var showNegotiationBlock = TweenMax.to("#NegotiateTerms", 0.5, {autoAlpha: 1, display: "block"});
+
+    step2timeline
+        .add(eraseBlockLine)
+        .add(showInvestor)
+        .add(connectToInvestor)
+        .add(showLetterOfEngagement)
+        .add(hideLetterOfEngagement)
+        .add(showNegotiationBlock);
+
+
+    new ScrollMagic.Scene({
+        triggerElement: "#step2", offset: 300
+    })
+    .setTween(step2timeline)
+    .addIndicators({name: "Step 2: Contract Negotiation"})
+    .addTo(controller);
+
+    /* Step 3: Signing & Submission */
+    var step3timeline = new TimelineMax();
+    var hideNegotiateBlock = TweenMax.to("#NegotiateTerms", 0.5, {autoAlpha: 0, display: "none"});
+    var hideLineToInvestor = TweenMax.to("#Line2", 0.5, {autoAlpha: 0, display: "none"});
+    var showHub = TweenMax.to("#Hub", 0.5, {autoAlpha: 1, display: "block"});
+    var showLineGroup1 = TweenMax.to(".lineGroup1", 0.5, {autoAlpha: 1, display: "block"});
+    var showBlockGroup2 = TweenMax.to("#BlockGroup2", 0.5, {className: 'zap'});
+
+    step3timeline
+        .add(hideNegotiateBlock)
+        .add(hideLineToInvestor)
+        .add(showHub)
+        .add(showLineGroup1)
+        .add(showBlockGroup2);
+
+    new ScrollMagic.Scene({
+        triggerElement: "#step3", offset: 300
+    })
+    .setTween(step3timeline)
+	.addIndicators({name: "Step 3: Signing & Submission"})
+	.addTo(controller);
+
+
+    /* Step 4: Fund Transfer & Disbursement */
+    var step4timeline = new TimelineMax();
+
+    var hideLineGroup1 = TweenMax.to(".lineGroup1", 0.5, {autoAlpha: 0, display: "none"});
+    var showLineGroup2 = TweenMax.to(".lineGroup2", 0.5, {autoAlpha: 1, display: "block"});
+    var moveHubRight = TweenMax.to("#Hub", 0.5, {className: 'moveRight'});
+    var showBlockGroup3 = TweenMax.to("#BlockGroup3", 0.5, {className: 'zap'});
+    var hideAllActors = TweenMax.to("#Actors", 0.5, {autoAlpha: 0, display: "none"});
+
+    step4timeline
+        .add(hideLineGroup1)
+        .add(showLineGroup2)
+        .add(moveHubRight)
+        .add(showBlockGroup3)
+        .add(hideAllActors);
+
+    new ScrollMagic.Scene({
+        triggerElement: "#step4", offset: 300
+    })
+    .setTween(step4timeline)
+	.addIndicators({name: "Step 4: Fund Transfer & Disbursement"})
 	.addTo(controller);
 	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 600
-    }).setTween(TweenMax.to($line1, 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "3 - Make Line 1 Disappear"}).addTo(controller);
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 600
-    }).setTween(TweenMax.to("#Investor", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "4 - Make Line 1 Disappear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 700
-    }).setTween(TweenMax.to($line2, 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "5 - Make Line 2 Appear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 700
-    }).setTween(TweenMax.to("#LetterOfEngagement", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "6 - Make LetterOfEngagement Appear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 800
-    }).setTween(TweenMax.to("#LetterOfEngagement", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "7 - Make LetterOfEngagement Disappear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 800
-    }).setTween(TweenMax.to("#NegotiateTerms", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "8 - Make NegotiateTerms Appear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1200
-    }).setTween(TweenMax.to("#NegotiateTerms", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "9 - Make NegotiateTerms Disappear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1200, duration: 200
-    }).setTween(TweenMax.to("#Line2", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "10 - Make Line2 Disappear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1200, duration: 200
-    }).setTween(TweenMax.to("#Hub", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "11 - Make Hub Appear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1300
-    }).setTween(TweenMax.to("#Line3", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "12 - Make Line3 Appear"}).addTo(controller);
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1300
-    }).setTween(TweenMax.to("#Line4", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "13 - Make Line4 Appear"}).addTo(controller);
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1300
-    }).setTween(TweenMax.to("#Line5", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "14 - Make Line5 Appear"}).addTo(controller);
-	
-    var producerScene = new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1500
-    })
-	.setClassToggle("#BlockGroup2", "zap")
-	.addIndicators({name: "15 - add a Block"})
-	.addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1600
-    }).setTween(TweenMax.to("#Line3", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "16 - Make Line3 Disappear"}).addTo(controller);
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1600
-    }).setTween(TweenMax.to("#Line4", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "17 - Make Line4 Disappear"}).addTo(controller);
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1600
-    }).setTween(TweenMax.to("#Line5", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "18 - Make Line5 Disappear"}).addTo(controller);
-	
-	var producerScene = new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1700
-    })
-	.setClassToggle("#Hub", "moveRight")
-	.addIndicators({name: "19 - TranslateX on hub"})
-	.addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1800
-    }).setTween(TweenMax.to("#Line6", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "20 - Make Line6 Appear"}).addTo(controller);
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1800
-    }).setTween(TweenMax.to("#Line7", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "21 - Make Line7 Appear"}).addTo(controller);
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1800
-    }).setTween(TweenMax.to("#Line8", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "22 - Make Line8 Appear"}).addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1900
-    })
-	.setClassToggle("#BlockGroup3", "zap")
-	.addIndicators({name: "23 - Add BlockGroup3"})
-	.addTo(controller);
-	
-	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 2000
-    }).setTween(TweenMax.to("#Actors", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "24 - Make All Actors Disappear"}).addTo(controller);
 
     // var producerSceneDelete = new ScrollMagic.Scene({
     // 	triggerElement: "#block", offset: 1000

@@ -1,3 +1,22 @@
+#LetterOfEngagement {
+    opacity: 0;
+}
+
+#Investor {
+    opacity: 0;
+}
+
+#Producer {
+    opacity: 0;
+}
+
+svg * {
+    transition: all 1s ease;
+}
+
+.visible {
+    opacity: 1 !important;
+}
 
 #Group1{
     transition: transform 0.8s ease-out;
