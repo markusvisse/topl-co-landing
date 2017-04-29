@@ -7,65 +7,44 @@ $(window).load(function() {
     function pathPrepare ($el) {
         var lineLength = $el[0].getTotalLength();
         $el.css("stroke-dasharray", lineLength);
-        $el.css("stroke-dashoffset", lineLength);
+        $el.css("stroke-dashoffset", -1*lineLength);
     }
 
     function calcLength ($el) {
         return $el[0].getTotalLength()
     }
-    //var $Group2 = $("path#_x3C_Group1_x3E_")
+	var $line1 = $("#Line1");
+	pathPrepare($line1);
 
-    // pathPrepare($Group2)
-    $.fn.getPath = function () {
-        if (this.length != 1) throw 'Requires one element.';
-
-        var path, node = this;
-        while (node.length) {
-            var realNode = node[0], name = realNode.localName;
-            if (!name) break;
-            name = name.toLowerCase();
-
-            var parent = node.parent();
-
-            var siblings = parent.children(name);
-            if (siblings.length > 1) {
-                name += ':eq(' + siblings.index(realNode) + ')';
-            }
-
-            path = name + (path ? '>' + path : '');
-            node = parent;
-        }
-
-        return path;
-    };
     var controller = new ScrollMagic.Controller();
-    var agreementScene = new ScrollMagic.Scene({
+	
+	var tween = TweenMax.to($line1, 0.5, {strokeDashoffset: 0, strokeDasharray: "4,2,4,2,4,2", drawSVG: '100%', ease:Linear.easeNone})
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 400
+    }).setTween(tween).addIndicators({name: "1 - Draw Line 1"}).addTo(controller);
+		
+    new ScrollMagic.Scene({
         triggerElement: "#block", offset: 500
-    })
-        .setClassToggle("#lower0", "zap")
-        .addIndicators({name: "1 - add a class"}) // add indicators (requires plugin)
-        .addTo(controller);
-
-    var producerScene = new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 500
-    })
-        .setClassToggle("#Group2", "zap1")
-        .addIndicators({name: "2 - add a class"}) // add indicators (requires plugin)
-        .addTo(controller);
+    }).setClassToggle("#BlockGroup1", "appear").addIndicators({name: "2 - Make BlockGroup1 Appear"}).addTo(controller);
+	
+	var tween1 = TweenMax.to($line1, 0.5, {autoAlpha: 0})
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 600
+    }).setTween(tween1).addIndicators({name: "3 - Make Line 1 Disappear"}).addTo(controller);
 
     var producerScene = new ScrollMagic.Scene({
         triggerElement: "#block", offset: 1000
     })
-        .setClassToggle("#Group3", "zap1")
-        .addIndicators({name: "3 - add a class"}) // add indicators (requires plugin)
-        .addTo(controller);
+	.setClassToggle("#Group3", "zap1")
+	.addIndicators({name: "3 - add a class"}) // add indicators (requires plugin)
+	.addTo(controller);
 
     var producerScene = new ScrollMagic.Scene({
         triggerElement: "#block", offset: 1500
     })
-        .setClassToggle("#Group4", "zap1")
-        .addIndicators({name: "4 - add a class"}) // add indicators (requires plugin)
-        .addTo(controller);
+	.setClassToggle("#Group4", "zap1")
+	.addIndicators({name: "4 - add a class"}) // add indicators (requires plugin)
+	.addTo(controller);
 
     var agreementScene = new ScrollMagic.Scene({
         triggerElement: "#block", offset: 1500

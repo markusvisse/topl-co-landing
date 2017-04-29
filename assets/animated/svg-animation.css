@@ -3,12 +3,6 @@
     transition: transform 0.8s ease-out;
     transform: scale(1);
 }
-#lower0.zap {
-    transform: scale(2.5, 0);
-}
-#upper0.zap {
-    transform: scale(2.5, 0);
-}
 
 #Group2 {
     transition: transform 0.6s ease-in;
@@ -35,6 +29,17 @@
 }
 #Group4.zap1 {
     transform: scale(1);
+}
+
+#BlockGroup1 {
+	transition: opacity 0.6s ease-in;
+	opacity: 0;
+}
+.appear {
+	opacity: 100 !important;
+}
+.disappear {
+	opacity: 0 !important;
 }
 
 svg {
