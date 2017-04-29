@@ -32,7 +32,8 @@ $(window).load(function() {
         .add(showBlockGroup1);
 
 	new ScrollMagic.Scene({
-        triggerElement: "#step1", offset: 300
+        triggerElement: "#step1",
+        offset: 200
     })
     .setTween(step1timeline)                                                            // Display broadcast to block
     .addIndicators({name: "Step 1: Request for Investment"})
@@ -41,12 +42,12 @@ $(window).load(function() {
 
 	/* Step 2: Contract Negotiation */
 	var step2timeline = new TimelineMax();
-    var eraseBlockLine = TweenMax.to($line1, 0.5, {autoAlpha: 0, display: "none"});
-    var showInvestor = TweenMax.to("#Investor", 0.5, {autoAlpha: 1, display: "block"});
-    var connectToInvestor = TweenMax.to($line2, 0.5, {autoAlpha: 1, display: "block"});
-    var showLetterOfEngagement = TweenMax.to("#LetterOfEngagement", 0.5, {autoAlpha: 1, display: "block"}); // TODO apply some sort of duration to this
+    var eraseBlockLine = TweenMax.to($line1, 0.1, {autoAlpha: 0, display: "none"});
+    var showInvestor = TweenMax.to("#Investor", 0.1, {autoAlpha: 1, display: "block"});
+    var connectToInvestor = TweenMax.to($line2, 0.1, {autoAlpha: 1, display: "block"});
+    var showLetterOfEngagement = TweenMax.to("#LetterOfEngagement", 1, {autoAlpha: 1, display: "block"}); // TODO apply some sort of duration to this
     var hideLetterOfEngagement = TweenMax.to("#LetterOfEngagement", 0.5, {autoAlpha: 0, display: "none"});
-    var showNegotiationBlock = TweenMax.to("#NegotiateTerms", 0.5, {autoAlpha: 1, display: "block"});
+    var showNegotiationBlock = TweenMax.to("#NegotiateTerms", 1, {autoAlpha: 1, display: "block"});
 
     step2timeline
         .add(eraseBlockLine)
@@ -58,7 +59,8 @@ $(window).load(function() {
 
 
     new ScrollMagic.Scene({
-        triggerElement: "#step2", offset: 300
+        triggerElement: "#step2",
+        offset: 100
     })
     .setTween(step2timeline)
     .addIndicators({name: "Step 2: Contract Negotiation"})
@@ -70,7 +72,7 @@ $(window).load(function() {
     var hideLineToInvestor = TweenMax.to("#Line2", 0.5, {autoAlpha: 0, display: "none"});
     var showHub = TweenMax.to("#Hub", 0.5, {autoAlpha: 1, display: "block"});
     var showLineGroup1 = TweenMax.to(".lineGroup1", 0.5, {autoAlpha: 1, display: "block"});
-    var showBlockGroup2 = TweenMax.to("#BlockGroup2", 0.5, {className: 'zap'});
+    var showBlockGroup2 = TweenMax.to("#BlockGroup2", 0.5, {className: 'zap', immediateRender: false});
 
     step3timeline
         .add(hideNegotiateBlock)
@@ -80,7 +82,8 @@ $(window).load(function() {
         .add(showBlockGroup2);
 
     new ScrollMagic.Scene({
-        triggerElement: "#step3", offset: 300
+        triggerElement: "#step3",
+        offset: 100
     })
     .setTween(step3timeline)
 	.addIndicators({name: "Step 3: Signing & Submission"})
@@ -90,33 +93,83 @@ $(window).load(function() {
     /* Step 4: Fund Transfer & Disbursement */
     var step4timeline = new TimelineMax();
 
-    var hideLineGroup1 = TweenMax.to(".lineGroup1", 0.5, {autoAlpha: 0, display: "none"});
-    var showLineGroup2 = TweenMax.to(".lineGroup2", 0.5, {autoAlpha: 1, display: "block"});
-    var moveHubRight = TweenMax.to("#Hub", 0.5, {className: 'moveRight'});
-    var showBlockGroup3 = TweenMax.to("#BlockGroup3", 0.5, {className: 'zap'});
-    var hideAllActors = TweenMax.to("#Actors", 0.5, {autoAlpha: 0, display: "none"});
+    var hideLineGroup1 = TweenMax.to("#LineGroup1", 0.5, {autoAlpha: 0, display: "none"});
+    var showLineGroup2 = TweenMax.to("#LineGroup2", 0.5, {autoAlpha: 1, display: "block"});
+    var moveHubRight = TweenMax.to("#Hub", 0.5, {className: 'moveRight', immediateRender: false});
+    var showBlockGroup3 = TweenMax.to("#BlockGroup3", 0.5, {className: 'zap', immediateRender: false});
 
     step4timeline
         .add(hideLineGroup1)
         .add(showLineGroup2)
         .add(moveHubRight)
-        .add(showBlockGroup3)
-        .add(hideAllActors);
+        .add(showBlockGroup3);
 
     new ScrollMagic.Scene({
-        triggerElement: "#step4", offset: 300
+        triggerElement: "#step4",
+        offset: 100
     })
     .setTween(step4timeline)
 	.addIndicators({name: "Step 4: Fund Transfer & Disbursement"})
 	.addTo(controller);
-	
 
-    // var producerSceneDelete = new ScrollMagic.Scene({
-    // 	triggerElement: "#block", offset: 1000
-    // })
-    // .setClassToggle("#Group2", "out")
-    // .addIndicators({name: "2 - add a class"}) // add indicators (requires plugin)
-    // .addTo(controller);
+
+    /* Step 5: Commodity Delivery */
+
+    var step5timeline = new TimelineMax();
+
+    var makeClockAppear = TweenMax.to("#Clock", 0.5, {autoAlpha: 1, display: "block"});
+    var spinMinutes = TweenMax.to("#MinuteArm", 0.5, {className: 'spinningFast', immediateRender: false});
+    var spinHours = TweenMax.to("#HourArm", 0.5, {className: 'spinningSlow', immediateRender: false});
+    var moveBlocksUp = TweenMax.to("#AllBlocks", 1.0, {y: -200});
+    var hideClock = TweenMax.to("#Clock", 0.1, {autoAlpha: 0, display: "none"});
+    var showActors = TweenMax.to("#Actors", 0.1, {autoAlpha: 1, display: "block"});
+    showHub = TweenMax.to("#Hub", 0.1, {autoAlpha: 1, display: "block"});
+    var hideLineGroup2 = TweenMax.to("#LineGroup2", 0.1, {autoAlpha: 0, display: "none"});
+    var showLine9 = TweenMax.to("#Line9", 0.1, {autoAlpha: 1, display: "block"});
+    var showReceiptOfGoods = TweenMax.to("#BlockGroup4", 0.1, {className: 'zap', immediateRender: false});
+
+    step5timeline
+        .add(makeClockAppear)
+        .add(spinMinutes)
+        .add(spinHours)
+        .add(moveBlocksUp)
+        .add(hideClock)
+        .add(showActors)
+        .add(showHub)
+        .add(hideLineGroup2)
+        .add(showLine9)
+        .add(showReceiptOfGoods)
+
+    new ScrollMagic.Scene({
+        triggerElement: "#step5",
+        offset: 100
+    })
+    .setTween(step5timeline)
+    .addIndicators({name: "Step 5: Commodity Delivery"})
+    .addTo(controller);
+
+
+    /* Step 6: Contract Fulfillment & Payment */
+    var step6timeline = new TimelineMax();
+
+    var showStar = TweenMax.to("#Star", 0.2, {className: 'zap', immediateRender: false});
+    var hideLine9 = TweenMax.to("#Line9", 0.1, {autoAlpha: 0, display: "none", immediateRender: false});
+    //showlinegroup2
+    var showContractFulfilled = TweenMax.to("#BlockGroup5", 0.1, {className: 'zap', immediateRender: false});
+
+    step6timeline
+        .add(showStar)
+        .add(hideLine9)
+        .add(showLineGroup2)
+        .add(showContractFulfilled);
+
+    new ScrollMagic.Scene({
+        triggerElement: "#step6",
+        offset: 100
+    })
+    .setTween(step6timeline)
+    .addIndicators({name: "Step 6: Contract Fulfillment & Payment"})
+    .addTo(controller);
 
     var containerScene = new ScrollMagic.Scene({
         triggerElement: '#step1',
