@@ -20,6 +20,39 @@
 	transition: transform 0.3s ease-in;
 	transform: scale(2.5, 0);
 }
+#BlockGroup4 {
+	transition: transform 0.3s ease-in;
+	transform: scale(2.5, 0);
+}
+#BlockGroup5 {
+	transition: transform 0.3s ease-in;
+	transform: scale(2.5, 0);
+}
+#Star {
+	transition: transform 0.3s ease-in;
+	transform: scale(2.5, 0);
+}
+#Clock {
+	opacity: 0;
+}
+
+.spinningFast {
+	position: absolute;
+	-webkit-animation:spin 0.3s linear infinite;
+    -moz-animation:spin 0.3s linear infinite;
+    animation:spin 0.3s linear infinite;
+    transform-origin: bottom left;
+}
+.spinningSlow {
+	position: absolute;
+	-webkit-animation:spin 0.7s linear infinite;
+    -moz-animation:spin 0.7s linear infinite;
+    animation:spin 0.7s linear infinite;
+    transform-origin: bottom left;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 .zap {
 	transform: scale(1) !important;
 }
