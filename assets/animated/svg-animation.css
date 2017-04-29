@@ -8,38 +8,12 @@
     transition: transform 0.6s ease-in;
     transform: scale(0, 2.5);
 }
-#Group2.zap1 {
-    transform: scale(1);
+#BlockGroup2 {
+	transition: transform 0.3s ease-in;
+	transform: scale(2.5, 0);
 }
-#Group2.out {
-    transform: scale(0, 2.5);
-}
-
-#Group3 {
-    transition: transform 0.6s ease-in;
-    transform: scale(0, 2.5);
-}
-#Group3.zap1 {
-    transform: scale(1);
-}
-
-#Group4 {
-    transition: transform 0.6s ease-in;
-    transform: scale(0, 2.5);
-}
-#Group4.zap1 {
-    transform: scale(1);
-}
-
-#BlockGroup1 {
-	transition: opacity 0.6s ease-in;
-	opacity: 0;
-}
-.appear {
-	opacity: 100 !important;
-}
-.disappear {
-	opacity: 0 !important;
+.zap {
+	transform: scale(1) !important;
 }
 
 svg {
