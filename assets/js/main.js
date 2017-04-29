@@ -25,8 +25,8 @@
 				$body.addClass('is-ie');
 
 		// Disable animations/transitions until the page has loaded.
-			if (skel.canUse('transition'))
-				$body.addClass('is-loading');
+			//if (skel.canUse('transition'))
+			//	$body.addClass('is-loading');
 
 			$window.on('load', function() {
 				window.setTimeout(function() {
