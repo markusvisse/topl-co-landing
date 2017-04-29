@@ -77,7 +77,7 @@ $(window).load(function() {
     // .addTo(controller);
 
     var containerScene = new ScrollMagic.Scene({
-        triggerElement: '#startAnimation',
+        triggerElement: '#step1',
         offset: "400"
     })
     .setPin('#block')

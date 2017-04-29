@@ -1684,12 +1684,17 @@ a {
 	text-decoration: none;
 }
 
+.light a {
+	border-bottom: dotted 1px rgba(0,0,0,0.35);
+}
+
 a:hover {
 	border-bottom-color: transparent;
 	color: #ffffff;
 }
 
 .light a:hover {
+	text-decoration: none;
 	color: #7c4dff;
 }
 
