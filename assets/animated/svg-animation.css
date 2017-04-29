@@ -8,12 +8,25 @@
     transition: transform 0.6s ease-in;
     transform: scale(0, 2.5);
 }
+#BlockGroup1 {
+	transition: transform 0.3s ease-in;
+	transform: scale(2.5, 0);
+}
 #BlockGroup2 {
+	transition: transform 0.3s ease-in;
+	transform: scale(2.5, 0);
+}
+#BlockGroup3 {
 	transition: transform 0.3s ease-in;
 	transform: scale(2.5, 0);
 }
 .zap {
 	transform: scale(1) !important;
+}
+
+#Hub.moveRight {
+	transition: transform 0.3s ease-in;
+	transform: translateX(130px)
 }
 
 svg {

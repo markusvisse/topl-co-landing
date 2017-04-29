@@ -22,10 +22,13 @@ $(window).load(function() {
 	new ScrollMagic.Scene({
         triggerElement: "#block", offset: 400
     }).setTween(tween).addIndicators({name: "1 - Draw Line 1"}).addTo(controller);
-		
+	
 	new ScrollMagic.Scene({
         triggerElement: "#block", offset: 500
-    }).setTween(TweenMax.to("#BlockGroup1", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "2 - Make BlockGroup1 Appear"}).addTo(controller);
+    })
+	.setClassToggle("#BlockGroup1", "zap")
+	.addIndicators({name: "2 - add BlockGroup1"})
+	.addTo(controller);
 	
 	new ScrollMagic.Scene({
         triggerElement: "#block", offset: 600
@@ -56,18 +59,66 @@ $(window).load(function() {
 	
 	new ScrollMagic.Scene({
         triggerElement: "#block", offset: 1200, duration: 200
-    }).setTween(TweenMax.to("#Line3", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "10 - Make Line3 Appear"}).addTo(controller);
+    }).setTween(TweenMax.to("#Line2", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "10 - Make Line2 Disappear"}).addTo(controller);
 	
 	new ScrollMagic.Scene({
-        triggerElement: "#block", offset: 1200, duration: 300
-    }).setTween(TweenMax.to("#Hub", 0.5, {autoAlpha: 1.5, display: "block"})).addIndicators({name: "11 - Make Hub Appear"}).addTo(controller);
-
+        triggerElement: "#block", offset: 1200, duration: 200
+    }).setTween(TweenMax.to("#Hub", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "11 - Make Hub Appear"}).addTo(controller);
+	
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1300
+    }).setTween(TweenMax.to("#Line3", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "12 - Make Line3 Appear"}).addTo(controller);
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1300
+    }).setTween(TweenMax.to("#Line4", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "13 - Make Line4 Appear"}).addTo(controller);
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1300
+    }).setTween(TweenMax.to("#Line5", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "14 - Make Line5 Appear"}).addTo(controller);
+	
     var producerScene = new ScrollMagic.Scene({
         triggerElement: "#block", offset: 1500
     })
 	.setClassToggle("#BlockGroup2", "zap")
-	.addIndicators({name: "3 - add a class"})
+	.addIndicators({name: "15 - add a Block"})
 	.addTo(controller);
+	
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1600
+    }).setTween(TweenMax.to("#Line3", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "16 - Make Line3 Disappear"}).addTo(controller);
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1600
+    }).setTween(TweenMax.to("#Line4", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "17 - Make Line4 Disappear"}).addTo(controller);
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1600
+    }).setTween(TweenMax.to("#Line5", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "18 - Make Line5 Disappear"}).addTo(controller);
+	
+	var producerScene = new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1700
+    })
+	.setClassToggle("#Hub", "moveRight")
+	.addIndicators({name: "19 - TranslateX on hub"})
+	.addTo(controller);
+	
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1800
+    }).setTween(TweenMax.to("#Line6", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "20 - Make Line6 Appear"}).addTo(controller);
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1800
+    }).setTween(TweenMax.to("#Line7", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "21 - Make Line7 Appear"}).addTo(controller);
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1800
+    }).setTween(TweenMax.to("#Line8", 0.5, {autoAlpha: 1, display: "block"})).addIndicators({name: "22 - Make Line8 Appear"}).addTo(controller);
+	
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 1900
+    })
+	.setClassToggle("#BlockGroup3", "zap")
+	.addIndicators({name: "23 - Add BlockGroup3"})
+	.addTo(controller);
+	
+	new ScrollMagic.Scene({
+        triggerElement: "#block", offset: 2000
+    }).setTween(TweenMax.to("#Actors", 0.5, {autoAlpha: 0, display: "none"})).addIndicators({name: "24 - Make All Actors Disappear"}).addTo(controller);
 
     // var producerSceneDelete = new ScrollMagic.Scene({
     // 	triggerElement: "#block", offset: 1000
