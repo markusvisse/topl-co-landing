@@ -3384,6 +3384,9 @@
 		 M147.364,250.5l11.047,37.607 M201.657,248.594l-22.09-27.514 M136.087,207.188l11.279-15.582 M156.45,225.823l23.115-4.743
 		 M147.364,250.5l-11.279-6.066 M82.965,250.5l12.395-6.066 M74.997,225.823l-24.234-4.743 M95.36,207.188l-12.395-15.582"/>
 
+	<!--<path d="M80 80
+	A 30 50 90 0 1 215.1 109.9
+L 219 100 Z" stroke="black" fill="green" stroke-width="2" fill-opacity="0.5"/>-->
 		<line id="Line1" fill="none" stroke="#7C4DFF" stroke-miterlimit="10" stroke-dasharray="4,2,4,2,4,2" x1="220.258" y1="121.5" x2="332.167" y2="121.5"/>
 	<g id="Producer">
 		<g>
@@ -4962,12 +4965,8 @@
 	</g>
 </g>
 <g id="Clock" display="none">
-
-		<circle id="ClockFace" display="inline" fill="none" stroke="#7C4DFF" stroke-miterlimit="10" cx="200.922" cy="224.416" r="99.667"/>
-
-		<line id="MinuteArm" display="inline" fill="none" stroke="#7C4DFF" stroke-miterlimit="10" x1="200.922" y1="224.415" x2="274.5" y2="175.167"/>
-
-		<line id="HourArm" display="inline" fill="none" stroke="#7C4DFF" stroke-miterlimit="10" x1="200.922" y1="224.415" x2="200.922" y2="175.167"/>
+		<circle id="ClockFace" display="inline" fill="none" stroke="#7C4DFF" stroke-miterlimit="10" cx="200.922" cy="224.416" r="100"/>
+		<line id="MinuteArm" display="inline" fill="none" stroke="#7C4DFF" stroke-miterlimit="10" x1="200.922" y1="224.415" x2="200.922" y2="124.415"/>
 </g>
 <line id="Line9" opacity="0" fill="none" stroke="#7C4DFF" stroke-miterlimit="10" stroke-dasharray="4,2,4,2,4,2" x1="354.594" y1="229.487" x2="317" y2="229.487"/>
 <g id="BlockGroup4">

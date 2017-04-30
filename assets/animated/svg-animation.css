@@ -10,8 +10,11 @@
     opacity: 0;
 }
 
+#Star {
+    opacity: 0;
+}
+
 svg * {
-    transition: all 1s ease;
 }
 
 .visible {
@@ -51,28 +54,33 @@ svg * {
  	transition: transform 0.3s ease-in;
  	transform: scale(2.5, 0);
  }
-#Clock {
- 	opacity: 0;
- }
 
-.spinningFast {
- 	position: absolute;
- 	-webkit-animation:spin 0.3s linear infinite;
-     -moz-animation:spin 0.3s linear infinite;
-     animation:spin 0.3s linear infinite;
-     transform-origin: bottom left;
- }
-.spinningSlow {
- 	position: absolute;
- 	-webkit-animation:spin 0.7s linear infinite;
-     -moz-animation:spin 0.7s linear infinite;
-     animation:spin 0.7s linear infinite;
-     transform-origin: bottom left;
- }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
- 
+#Clock {
+    transition: none;
+    opacity: 0;
+}
+
+#Clock circle {
+    stroke-width: 200px;
+    fill: none;
+    stroke-dasharray: 628; /* equal to circumference of circle 2 * 3.14 * 100 */
+    animation: wipe 2s linear;
+    transform: rotate(-90deg);
+    transform-origin: 201px 224px;
+}
+
+@keyframes wipe {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dashoffset: -314;
+    }
+    100% {
+        stroke-dashoffset: -628;
+    }
+}
+
 .zap {
 	transform: scale(1) !important;
 }
