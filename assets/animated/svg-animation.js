@@ -41,14 +41,17 @@ $(window).load(function() {
         .add(drawProducerBroadcastLine)
         .add(broadcast)
         .add(showProposal)
-        .add(showBroadcastCaption);
+        .add(showBroadcastCaption)
+		.add("end");
 
 	new ScrollMagic.Scene({
         triggerElement: "#step1",
-        offset: 200,
-        reverse: false
+        offset: 200
     })
-    .setTween(step1timeline)                                                            // Display broadcast to block
+    .setTween(step1timeline)                                                    // Display broadcast to block
+	.on("leave", function (e) {
+		setTimeout(function() { step1timeline.seek(0) }, 500)
+	})
     //.addIndicators({name: "Step 1: Request for Investment"})
     .addTo(controller);
 
@@ -83,14 +86,21 @@ $(window).load(function() {
         .add(sendInvestorSig)
         .add(showProducerSig)
         .add(sendBothSigs)
-        .add(showSigsOnProposal);
+        .add(showSigsOnProposal)
+		.add("end")
 
     new ScrollMagic.Scene({
         triggerElement: "#step2",
-        offset: 100,
-        reverse: false
+        offset: 100
     })
     .setTween(step2timeline)
+	.on("enter", function(){
+        step1timeline.seek("end")
+		step2timeline.restart()
+    })
+	.on("leave", function (e) {
+		setTimeout(function() { step1timeline.seek(0) }, 500)
+	})
     //.addIndicators({name: "Step 2: Contract Negotiation"})
     .addTo(controller);
 
@@ -107,14 +117,21 @@ $(window).load(function() {
         .add(showHub)
         .add(showHubSig)
         .add(sendHubSig)
-        .add(showHubSigOnProposal);
+        .add(showHubSigOnProposal)
+		.add("end")
 
     new ScrollMagic.Scene({
         triggerElement: "#step3",
-        offset: 100,
-        reverse: false
+        offset: 100
     })
     .setTween(step3timeline)
+	.on("enter", function(){
+        step2timeline.seek("end")
+		step3timeline.restart()
+    })
+	.on("leave", function (e) {
+		setTimeout(function() { step2timeline.seek(0) }, 500)
+	})
 	//.addIndicators({name: "Step 3: Signing & Submission"})
 	.addTo(controller);
 
@@ -134,28 +151,39 @@ $(window).load(function() {
         .add(showInvestorCoin)
         .add(showSafe)
         .add(moveInvestorCoinIntoSafe)
-        .add(resetView);
+        .add(resetView)
+		.add("end")
 
 
     new ScrollMagic.Scene({
         triggerElement: "#step4",
-        offset: 100,
-        reverse: false
+        offset: 100
     })
     .setTween(step4timeline)
+	.on("enter", function(){
+        step3timeline.seek("end")
+		step4timeline.restart()
+    })
+	.on("leave", function (e) {
+		setTimeout(function() { step3timeline.seek(0) }, 500)
+	})
 	//.addIndicators({name: "Step 4: Fund Transfer & Disbursement"})
 	.addTo(controller);
 
 
     /* Step 5: Commodity Delivery */
-    var zoomInToProducer = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "53.167 100 339.302 336.125" }});
+    var zoomInToProducer = TweenMax.to("#scene", 0.75, {attr:{ viewBox: "53.167 100 339.302 336.125" }});
+	
+	var preStep5timeline = new TimelineMax();
+	
+	preStep5timeline.add(zoomInToProducer);
 
-    new ScrollMagic.Scene({
+    var zoomInScene = new ScrollMagic.Scene({
         triggerElement: "#step5",
         offset:100,
-        reverse: true
+        reverse: false
     })
-    .setTween(zoomInToProducer)
+    .setTween(preStep5timeline)
     .addTo(controller);
 
     var step5timeline = new TimelineMax({repeat: -1});
@@ -167,14 +195,24 @@ $(window).load(function() {
     step5timeline
         .add(showGoods)
         .add(showReceiptOfGoods)
-        .add(hideGoods);
+        .add(hideGoods)
+		.add("end")
 
+	var scrollDirection = null
     new ScrollMagic.Scene({
         triggerElement: "#step5",
-        offset: 100,
-        reverse: false
+        offset: 100
     })
     .setTween(step5timeline)
+	.on("enter", function(e){
+        step4timeline.seek("end")
+		preStep5timeline.restart();
+		step5timeline.restart()
+    })
+	.on("leave", function (e) {
+		step5timeline.pause(0)
+		setTimeout(function() { step4timeline.seek(0) }, 500)
+	})
     //.addIndicators({name: "Step 5: Commodity Delivery"})
     .addTo(controller);
 
@@ -185,7 +223,7 @@ $(window).load(function() {
     var zoomOutAll = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "103.167 -50 339.302 536.125" }});
     var showCoins = TweenMax.to(".coin", 0.5, {autoAlpha: 1});
     var moveInvestorCoin = TweenMax.to("#ToplCoin_i", 0.5, {y:0});
-    var hideSafe = TweenMax.to("#SafeBox", 0.25, {autoAlpha: 0});
+    var hideSafe = TweenMax.to("#SafeBox", 0.5, {autoAlpha: 0});
     var showReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha:1});
     var showReputationCaption = TweenMax.to(".reputationCaption", 0.5, {autoAlpha:1});
     var moveReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha: 0.85, y: -10, repeat: -1, yoyo: true});
@@ -202,19 +240,25 @@ $(window).load(function() {
 
     new ScrollMagic.Scene({
         triggerElement: "#step6",
-        offset: 100,
-        reverse: false
+        offset: 100
     })
     .setTween(step6timeline)
     .on("enter", function(){
-        step5timeline.pause();
+        step5timeline.pause(0)
+		step6timeline.restart()
     })
+	.on("leave", function (e) {
+		//step6timeline.pause()
+		// go back to end of 4, apply zoom, then play 5
+		setTimeout(function() { step4timeline.seek("end"); preStep5timeline.play(0); step5timeline.play(0); step6timeline.progress(0)}, 500)
+	})
     //.addIndicators({name: "Step 6: Contract Fulfillment & Payment"})
     .addTo(controller);
 
     var containerScene = new ScrollMagic.Scene({
         triggerElement: '#step1',
-        offset: "400"
+        offset: "400",
+		duration: $("#step6").offset().top - $("#step1").offset().top + 100
     })
     .setPin('#block')
     //.addIndicators({name: "Pin Starts"})
