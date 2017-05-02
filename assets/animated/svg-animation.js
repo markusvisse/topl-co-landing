@@ -2,7 +2,7 @@
 
 $(window).load(function() {
     var $e = $("#e")
-    $e.replaceWith($($e[0].contentDocument.documentElement).clone());
+    $e.replaceWith($($e[0].contentDocument.documentElement));
 
     function pathPrepare ($el) {
         var lineLength = $el[0].getTotalLength();
@@ -13,27 +13,30 @@ $(window).load(function() {
     function calcLength ($el) {
         return $el[0].getTotalLength()
     }
-	var $line1 = $("#Line1"); var $line2 = $("#Line2");
-	pathPrepare($line1); //pathPrepare($line2);
+	//var $line1 = $("#Line1"); var $line2 = $("#Line2");
+	//pathPrepare($line1); //pathPrepare($line2);
 
     var controller = new ScrollMagic.Controller();
 
 
     /* Step 1: Request for Investment */
-    var connectProducerToBlock = TweenMax.to($line1, 0.5, {strokeDashoffset: 0, strokeDasharray: "4,2,4,2,4,2", drawSVG: '100%', ease:Linear.easeNone, immediateRender: false});
-    var showProducer = TweenMax.to("#Producer", 1, {className: 'animated visible fadeIn', immediateRender: false});
-    var showBlockGroup1 = TweenMax.to("#BlockGroup1", 1, {className: 'animated rollIn', immediateRender: false});
+    var showProducer = TweenMax.to("#Producer", 1, {autoAlpha: 1});
+    var zoomToBroadcast = TweenMax.to("#scene", 0.1, {attr:{ viewBox: "103.167 0 339.302 336.125" }});
+    var showProducerBroadcast = TweenMax.to(".investmentProposalLine", 0.5, {autoAlpha:1});
+    var showProposal = TweenMax.to("#InvestmentProposal", 0.5, {autoAlpha:1});
 
     var step1timeline = new TimelineMax();
 
     step1timeline
+        .add(zoomToBroadcast)
         .add(showProducer)
-        .add(connectProducerToBlock)
-        .add(showBlockGroup1);
+        .add(showProducerBroadcast)
+        .add(showProposal);
 
 	new ScrollMagic.Scene({
         triggerElement: "#step1",
-        offset: 200
+        offset: 200,
+        reverse: false
     })
     .setTween(step1timeline)                                                            // Display broadcast to block
     .addIndicators({name: "Step 1: Request for Investment"})
@@ -41,26 +44,45 @@ $(window).load(function() {
 
 
 	/* Step 2: Contract Negotiation */
-	var step2timeline = new TimelineMax();
-    var eraseBlockLine = TweenMax.to($line1, 0.1, {autoAlpha: 0, display: "none"});
-    var showInvestor = TweenMax.to("#Investor", 0.1, {autoAlpha: 1, display: "block"});
-    var connectToInvestor = TweenMax.to($line2, 0.1, {autoAlpha: 1, display: "block"});
-    var showLetterOfEngagement = TweenMax.to("#LetterOfEngagement", 1, {autoAlpha: 1, display: "block"}); // TODO apply some sort of duration to this
-    var hideLetterOfEngagement = TweenMax.to("#LetterOfEngagement", 0.5, {autoAlpha: 0, display: "none"});
-    var showNegotiationBlock = TweenMax.to("#NegotiateTerms", 1, {autoAlpha: 1, display: "block"});
+	var hideProducerBroadcast = TweenMax.to(".investmentProposalLine", 0.5, {autoAlpha: 0});
+	var zoomOutToInvestor = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "103.167 -50 339.302 536.125" }});
+    var showInvestor = TweenMax.to("#Investor", 0.25, {autoAlpha: 1});
+    var showLaser = TweenMax.fromTo("#Laser", 1, {x: 100, scaleX:-0.2, scaleY:0, y: 250}, {x:0, y:0, scaleX:1, scaleY: 1, opacity: 1});
+    var moveLaserUp = TweenMax.to("#Laser", 0.5, {y: -200});
+    var moveLaserDown = TweenMax.to("#Laser", 0.5, {y: 0});
+    var retractLaser = TweenMax.to("#Laser", 1, {x: 100, scaleX:-0.2, scaleY:0, y: 250, opacity: 0});
+    var showInvestorSigning = TweenMax.to(".investorSigningLine", 0.25, {autoAlpha: 1});
+    var showInvestorSig = TweenMax.to("#InvestorSig", 0.5, {autoAlpha: 0.7});
+    var sendInvestorSig = TweenMax.to("#InvestorSig", 1, {x: -150, y: -90});
+    var showProducerSig = TweenMax.to("#ProducerSig", 0.5, {autoAlpha: 0.7});
+    var sendBothSigs = TweenMax.to(".offContractSigs", 0.8, {x: 100, autoAlpha: 0, ease: Power2.easeOut});
+    var showSigsOnProposal = TweenMax.to(".contractSigs", 0.25, {autoAlpha: 1});
+
+    //var lineLength = $('#InvestorProducerLineGroup > line')[0].getTotalLength();
+    //var dashInvestorSigning = TweenMax.to($('#InvestorProducerLineGroup > line')[0], 2, {strokeDashOffset: lineLength/10} );
+
+    var step2timeline = new TimelineMax();
 
     step2timeline
-        .add(eraseBlockLine)
+        .add(hideProducerBroadcast)
+        .add(zoomOutToInvestor)
         .add(showInvestor)
-        .add(connectToInvestor)
-        .add(showLetterOfEngagement)
-        .add(hideLetterOfEngagement)
-        .add(showNegotiationBlock);
-
+        .add(showLaser)
+        .add(moveLaserUp)
+        .add(moveLaserDown)
+        .add(retractLaser)
+        .add(showInvestorSigning)
+//        .add(dashInvestorSigning)
+        .add(showInvestorSig)
+        .add(sendInvestorSig)
+        .add(showProducerSig)
+        .add(sendBothSigs)
+        .add(showSigsOnProposal);
 
     new ScrollMagic.Scene({
         triggerElement: "#step2",
-        offset: 100
+        offset: 100,
+        reverse: false
     })
     .setTween(step2timeline)
     .addIndicators({name: "Step 2: Contract Negotiation"})
@@ -68,22 +90,23 @@ $(window).load(function() {
 
     /* Step 3: Signing & Submission */
     var step3timeline = new TimelineMax();
-    var hideNegotiateBlock = TweenMax.to("#NegotiateTerms", 0.5, {autoAlpha: 0, display: "none"});
-    var hideLineToInvestor = TweenMax.to("#Line2", 0.5, {autoAlpha: 0, display: "none"});
+    var hideInvestorSigning = TweenMax.to(".investorSigningLine", 0.25, {autoAlpha: 0});
     var showHub = TweenMax.to("#Hub", 0.5, {autoAlpha: 1, display: "block"});
-    var showLineGroup1 = TweenMax.to(".lineGroup1", 0.5, {autoAlpha: 1, display: "block"});
-    var showBlockGroup2 = TweenMax.to("#BlockGroup2", 0.5, {className: 'zap', immediateRender: false});
+    var showHubSig = TweenMax.to("#HubSig", 0.5, {autoAlpha: 1});
+    var sendHubSig = TweenMax.to("#HubSig", 0.75, {autoAlpha: 0, x: 80, y: -20});
+    var showHubSigOnProposal = TweenMax.to("#HubSig_contract", 0.25, {autoAlpha: 1});
 
     step3timeline
-        .add(hideNegotiateBlock)
-        .add(hideLineToInvestor)
+        .add(hideInvestorSigning)
         .add(showHub)
-        .add(showLineGroup1)
-        .add(showBlockGroup2);
+        .add(showHubSig)
+        .add(sendHubSig)
+        .add(showHubSigOnProposal);
 
     new ScrollMagic.Scene({
         triggerElement: "#step3",
-        offset: 100
+        offset: 100,
+        reverse: false
     })
     .setTween(step3timeline)
 	.addIndicators({name: "Step 3: Signing & Submission"})
@@ -93,20 +116,25 @@ $(window).load(function() {
     /* Step 4: Fund Transfer & Disbursement */
     var step4timeline = new TimelineMax();
 
-    var hideLineGroup1 = TweenMax.to("#LineGroup1", 0.5, {autoAlpha: 0, display: "none"});
-    var showLineGroup2 = TweenMax.to("#LineGroup2", 0.5, {autoAlpha: 1, display: "block"});
-    var moveHubRight = TweenMax.to("#Hub", 0.5, {className: 'moveRight', immediateRender: false});
-    var showBlockGroup3 = TweenMax.to("#BlockGroup3", 0.5, {className: 'zap', immediateRender: false});
+    var zoomInOnInvestor = TweenMax.to("#scene", 0.5, { attr: { viewBox: "180 150 290 340" } });
+    var showInvestorCoin = TweenMax.to("#ToplCoin_i", 0.25, {autoAlpha: 1});
+    var showSafe = TweenMax.to("#SafeBox", 0.25, {autoAlpha: 1});
+    var moveInvestorCoinIntoSafe = TweenMax.to("#ToplCoin_i", 0.5, {y: -80, autoAlpha: 0});
+    var resetView = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "103.167 -50 339.302 536.125" }});
+    // "approved"?
 
     step4timeline
-        .add(hideLineGroup1)
-        .add(showLineGroup2)
-        .add(moveHubRight)
-        .add(showBlockGroup3);
+        .add(zoomInOnInvestor)
+        .add(showInvestorCoin)
+        .add(showSafe)
+        .add(moveInvestorCoinIntoSafe)
+        .add(resetView);
+
 
     new ScrollMagic.Scene({
         triggerElement: "#step4",
-        offset: 100
+        offset: 100,
+        reverse: false
     })
     .setTween(step4timeline)
 	.addIndicators({name: "Step 4: Fund Transfer & Disbursement"})
@@ -114,31 +142,21 @@ $(window).load(function() {
 
 
     /* Step 5: Commodity Delivery */
+    var step5timeline = new TimelineMax({repeat: -1});
 
-    var step5timeline = new TimelineMax();
-
-    var makeClockAppear = TweenMax.to("#Clock", 2, {autoAlpha: 1, display: "block"});
-    var moveBlocksUp = TweenMax.to("#AllBlocks", 1.0, {y: -200});
-    var hideClock = TweenMax.to("#Clock", 0.1, {autoAlpha: 0, display: "none"});
-    var showActors = TweenMax.to("#Actors", 0.1, {autoAlpha: 1, display: "block"});
-    showHub = TweenMax.to("#Hub", 0.1, {autoAlpha: 1, display: "block"});
-    var hideLineGroup2 = TweenMax.to("#LineGroup2", 0.1, {autoAlpha: 0, display: "none"});
-    var showLine9 = TweenMax.to("#Line9", 0.1, {autoAlpha: 1, display: "block"});
-    var showReceiptOfGoods = TweenMax.to("#BlockGroup4", 0.1, {className: 'zap', immediateRender: false});
+    var showGoods = TweenMax.to("#box", 0.25, {autoAlpha: 1});
+    var showReceiptOfGoods = TweenMax.to("#box", 1.5, {x:110, y: 65});
+    var hideGoods = TweenMax.to("#box", 0.25, {autoAlpha: 0});
 
     step5timeline
-        .add(makeClockAppear)
-        .add(moveBlocksUp)
-        .add(hideClock)
-        .add(showActors)
-        .add(showHub)
-        .add(hideLineGroup2)
-        .add(showLine9)
-        .add(showReceiptOfGoods);
+        .add(showGoods)
+        .add(showReceiptOfGoods)
+        .add(hideGoods);
 
     new ScrollMagic.Scene({
         triggerElement: "#step5",
-        offset: 100
+        offset: 100,
+        reverse: false
     })
     .setTween(step5timeline)
     .addIndicators({name: "Step 5: Commodity Delivery"})
@@ -148,22 +166,29 @@ $(window).load(function() {
     /* Step 6: Contract Fulfillment & Payment */
     var step6timeline = new TimelineMax();
 
-    var showStar = TweenMax.to("#Star", 0.1, {className: 'zap'});
-    var hideLine9 = TweenMax.to("#Line9", 0.1, {autoAlpha: 0, display: "none", immediateRender: false});
-    //showlinegroup2
-    var showContractFulfilled = TweenMax.to("#BlockGroup5", 0.1, {className: 'zap', immediateRender: false});
+    var showCoins = TweenMax.to(".coins", 0.5, {autoAlpha: 1});
+    var moveInvestorCoin = TweenMax.to("#ToplCoin_i", 0.5, {y:0});
+    var showReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha:1});
+    var showReputationCaption = TweenMax.to(".reputationLine", 0.5, {autoAlpha:1});
+    var moveReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha: 0.85, y: -10, repeat: -1, yoyo: true});
 
     step6timeline
-        .add(showContractFulfilled)
-        .add(hideLine9)
-        .add(showLineGroup2)
-        .add(showStar);
+        .add(hideGoods)
+        .add(showCoins)
+        .add(moveInvestorCoin)
+        .add(showReputationGain)
+        .add(showReputationCaption)
+        .add(moveReputationGain);
 
     new ScrollMagic.Scene({
         triggerElement: "#step6",
-        offset: 100
+        offset: 100,
+        reverse: false
     })
     .setTween(step6timeline)
+    .on("enter", function(){
+        step5timeline.pause();
+    })
     .addIndicators({name: "Step 6: Contract Fulfillment & Payment"})
     .addTo(controller);
 
