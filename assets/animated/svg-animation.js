@@ -21,17 +21,27 @@ $(window).load(function() {
 
     /* Step 1: Request for Investment */
     var showProducer = TweenMax.to("#Producer", 1, {autoAlpha: 1});
-    var zoomToBroadcast = TweenMax.to("#scene", 0.1, {attr:{ viewBox: "103.167 0 339.302 336.125" }});
-    var showProducerBroadcast = TweenMax.to(".investmentProposalLine", 0.5, {autoAlpha:1});
+    var zoomToBroadcast = TweenMax.to("#scene", 0.01, {attr:{ viewBox: "103.167 0 339.302 336.125" }});
+    var hideEverything = TweenMax.to("#ProposalLineGroup > *", 0.01, {autoAlpha:0});
+    var showProposalGroup = TweenMax.to("#ProposalLineGroup", 0.01, {autoAlpha:1});
+    var showProducerBroadcastCircle = TweenMax.to("#ProposalLineGroup > .circle", 0.1, {autoAlpha:1});
+    var drawProducerBroadcastLine = TweenMax.fromTo("#ProposalLineGroup > line", 0.75, {autoAlpha:0, scaleX:0}, {autoAlpha:1, scaleX:1});
+    var broadcast = TweenMax.staggerTo("#ProposalLineGroup > .broadcast", 0.25, {autoAlpha:1}, 0.15);
     var showProposal = TweenMax.to("#InvestmentProposal", 0.5, {autoAlpha:1});
+    var showBroadcastCaption = TweenMax.to(".investmentProposalLine", 0.25, {autoAlpha:1});
 
     var step1timeline = new TimelineMax();
 
     step1timeline
         .add(zoomToBroadcast)
         .add(showProducer)
-        .add(showProducerBroadcast)
-        .add(showProposal);
+        .add(hideEverything)
+        .add(showProposalGroup)
+        .add(showProducerBroadcastCircle)
+        .add(drawProducerBroadcastLine)
+        .add(broadcast)
+        .add(showProposal)
+        .add(showBroadcastCaption);
 
 	new ScrollMagic.Scene({
         triggerElement: "#step1",
@@ -39,7 +49,7 @@ $(window).load(function() {
         reverse: false
     })
     .setTween(step1timeline)                                                            // Display broadcast to block
-    .addIndicators({name: "Step 1: Request for Investment"})
+    //.addIndicators({name: "Step 1: Request for Investment"})
     .addTo(controller);
 
 
@@ -55,11 +65,8 @@ $(window).load(function() {
     var showInvestorSig = TweenMax.to("#InvestorSig", 0.5, {autoAlpha: 0.7});
     var sendInvestorSig = TweenMax.to("#InvestorSig", 1, {x: -150, y: -90});
     var showProducerSig = TweenMax.to("#ProducerSig", 0.5, {autoAlpha: 0.7});
-    var sendBothSigs = TweenMax.to(".offContractSigs", 0.8, {x: 100, autoAlpha: 0, ease: Power2.easeOut});
-    var showSigsOnProposal = TweenMax.to(".contractSigs", 0.25, {autoAlpha: 1});
-
-    //var lineLength = $('#InvestorProducerLineGroup > line')[0].getTotalLength();
-    //var dashInvestorSigning = TweenMax.to($('#InvestorProducerLineGroup > line')[0], 2, {strokeDashOffset: lineLength/10} );
+    var sendBothSigs = TweenMax.to(".offContractSig", 0.8, {x: 100, autoAlpha: 0, ease: Power2.easeOut});
+    var showSigsOnProposal = TweenMax.to(".contractSig", 0.25, {autoAlpha: 1});
 
     var step2timeline = new TimelineMax();
 
@@ -72,7 +79,6 @@ $(window).load(function() {
         .add(moveLaserDown)
         .add(retractLaser)
         .add(showInvestorSigning)
-//        .add(dashInvestorSigning)
         .add(showInvestorSig)
         .add(sendInvestorSig)
         .add(showProducerSig)
@@ -85,7 +91,7 @@ $(window).load(function() {
         reverse: false
     })
     .setTween(step2timeline)
-    .addIndicators({name: "Step 2: Contract Negotiation"})
+    //.addIndicators({name: "Step 2: Contract Negotiation"})
     .addTo(controller);
 
     /* Step 3: Signing & Submission */
@@ -109,7 +115,7 @@ $(window).load(function() {
         reverse: false
     })
     .setTween(step3timeline)
-	.addIndicators({name: "Step 3: Signing & Submission"})
+	//.addIndicators({name: "Step 3: Signing & Submission"})
 	.addTo(controller);
 
 
@@ -137,11 +143,21 @@ $(window).load(function() {
         reverse: false
     })
     .setTween(step4timeline)
-	.addIndicators({name: "Step 4: Fund Transfer & Disbursement"})
+	//.addIndicators({name: "Step 4: Fund Transfer & Disbursement"})
 	.addTo(controller);
 
 
     /* Step 5: Commodity Delivery */
+    var zoomInToProducer = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "53.167 100 339.302 336.125" }});
+
+    new ScrollMagic.Scene({
+        triggerElement: "#step5",
+        offset:100,
+        reverse: true
+    })
+    .setTween(zoomInToProducer)
+    .addTo(controller);
+
     var step5timeline = new TimelineMax({repeat: -1});
 
     var showGoods = TweenMax.to("#box", 0.25, {autoAlpha: 1});
@@ -159,23 +175,27 @@ $(window).load(function() {
         reverse: false
     })
     .setTween(step5timeline)
-    .addIndicators({name: "Step 5: Commodity Delivery"})
+    //.addIndicators({name: "Step 5: Commodity Delivery"})
     .addTo(controller);
 
 
     /* Step 6: Contract Fulfillment & Payment */
     var step6timeline = new TimelineMax();
 
-    var showCoins = TweenMax.to(".coins", 0.5, {autoAlpha: 1});
+    var zoomOutAll = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "103.167 -50 339.302 536.125" }});
+    var showCoins = TweenMax.to(".coin", 0.5, {autoAlpha: 1});
     var moveInvestorCoin = TweenMax.to("#ToplCoin_i", 0.5, {y:0});
+    var hideSafe = TweenMax.to("#SafeBox", 0.25, {autoAlpha: 0});
     var showReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha:1});
-    var showReputationCaption = TweenMax.to(".reputationLine", 0.5, {autoAlpha:1});
+    var showReputationCaption = TweenMax.to(".reputationCaption", 0.5, {autoAlpha:1});
     var moveReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha: 0.85, y: -10, repeat: -1, yoyo: true});
 
     step6timeline
+        .add(zoomOutAll)
         .add(hideGoods)
         .add(showCoins)
         .add(moveInvestorCoin)
+        .add(hideSafe)
         .add(showReputationGain)
         .add(showReputationCaption)
         .add(moveReputationGain);
@@ -189,7 +209,7 @@ $(window).load(function() {
     .on("enter", function(){
         step5timeline.pause();
     })
-    .addIndicators({name: "Step 6: Contract Fulfillment & Payment"})
+    //.addIndicators({name: "Step 6: Contract Fulfillment & Payment"})
     .addTo(controller);
 
     var containerScene = new ScrollMagic.Scene({
@@ -197,6 +217,6 @@ $(window).load(function() {
         offset: "400"
     })
     .setPin('#block')
-    .addIndicators()
+    //.addIndicators({name: "Pin Starts"})
     .addTo(controller);
 });

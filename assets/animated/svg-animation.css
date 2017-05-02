@@ -1,4 +1,4 @@
-svg > g > * {
+svg > g  {
     opacity: 0;
 }
 
@@ -6,4 +6,15 @@ svg > g > * {
 svg {
     width: 100%;
     height: auto;
+}
+
+#InvestorProducerLineGroup > line {
+    stroke-dasharray: 20;
+    animation: dash 5s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 150;
+    }
 }
