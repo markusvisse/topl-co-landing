@@ -1,8 +1,14 @@
 // Our code goes here
 
 $(window).load(function() {
-    var $e = $("#e")
-    $e.replaceWith($($e[0].contentDocument.documentElement));
+
+    if(window.innerWidth > 500) {
+        var $e = $("#e");
+        $e.replaceWith($($e[0].contentDocument.documentElement));
+    } else {
+        var $e2 = $("#e2");
+        $e2.replaceWith($($e2[0].contentDocument.documentElement));
+    }
 
     function pathPrepare ($el) {
         var lineLength = $el[0].getTotalLength();
@@ -178,7 +184,7 @@ $(window).load(function() {
 	var hideInvestorCoin = TweenMax.to("#ToplCoin_i", 0.25, {autoAlpha: 0});
 
 	var preStep5timeline = new TimelineMax();
-	
+
 	preStep5timeline
         .add(zoomInToProducer)
         .add(hideInvestorCoin);
@@ -265,7 +271,7 @@ $(window).load(function() {
         offset: "400",
 		duration: $("#step6").offset().top - $("#step1").offset().top + 100
     })
-    .setPin('#block')
+    .setPin(window.innerHeight > 500 ? '#block' : '#block2')
     //.addIndicators({name: "Pin Starts"})
     .addTo(controller);
 });

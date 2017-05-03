@@ -4261,7 +4261,42 @@ h6.caps {
 	font-size: 0.5rem;
 }
 
+
 #process .step {
 	min-height: 100vh;
-	padding-top: 7vh;
+}
+
+@media(max-width: 500px) {
+	#process .step > div {
+		margin-top: 65vh;
+		padding-top: 3vh;
+		position: relative;
+		z-index: 2;
+	}
+
+	#step1 > div {
+		background-color: #fcfcfc
+	}
+	#step2 > div {
+		background-color: #fafafa;
+	}
+	#step3 > div {
+		background-color: #f9f9f9;
+	}
+	#step4 > div {
+		background-color: #f7f7f7;
+	}
+	#step5 > div {
+		background-color: #f5f5f5;
+	}
+	#step6 > div {
+		background-color: #f3f3f3;
+	}
+}
+
+@media(min-width:500px) {
+	#process .step {
+		min-height: 100vh;
+		padding-top: 7vh;
+	}
 }

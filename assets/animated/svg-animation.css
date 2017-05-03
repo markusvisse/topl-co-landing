@@ -7,6 +7,11 @@ svg {
     height: auto;
 }
 
+.mobile-svg svg {
+    width: auto;
+    height: 65vh;
+}
+
 #InvestorProducerLineGroup > line {
     stroke-dasharray: 20;
     animation: dash 5s linear infinite;
