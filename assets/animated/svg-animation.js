@@ -2,7 +2,9 @@
 
 $(window).load(function() {
 
-    if(window.innerWidth > 500) {
+    var isMobile = window.innerWidth <= 500;
+
+    if(!isMobile) {
         var $e = $("#e");
         $e.replaceWith($($e[0].contentDocument.documentElement));
     } else {
@@ -290,9 +292,9 @@ $(window).load(function() {
     var containerScene = new ScrollMagic.Scene({
         triggerElement: '#step1',
         offset: "400",
-		duration: $("#step6").offset().top - $("#step1").offset().top + 100
+		duration: $("#step6").offset().top - $("#step1").offset().top + (isMobile ? 300 : 100)
     })
-    .setPin(window.innerWidth > 500 ? '#block' : '#block2')
+    .setPin(isMobile ? '#block2' : '#block')
     //.addIndicators({name: "Pin Starts"})
     .addTo(controller);
 });
