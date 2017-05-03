@@ -151,7 +151,6 @@ $(window).load(function() {
         .add(zoomInOnInvestor)
         .add(showInvestorCoin)
         .add(showSafe)
-        .add(test)
         .add(moveInvestorCoinIntoSafe)
         .add(resetView)
         .add(moveInvestorCoinToProducer)
