@@ -26,7 +26,7 @@ $(window).load(function() {
 
 
     /* Step 1: Request for Investment */
-    var showProducer = TweenMax.to("#Producer", 1, {autoAlpha: 1});
+    var showProducer = TweenMax.to("#Producer", 0.5, {autoAlpha: 1});
     var zoomToBroadcast = TweenMax.to("#scene", 0.01, {attr:{ viewBox: "103.167 0 339.302 336.125" }});
     var hideEverything = TweenMax.to("#ProposalLineGroup > *", 0.01, {autoAlpha:0});
     var showProposalGroup = TweenMax.to("#ProposalLineGroup", 0.01, {autoAlpha:1});
@@ -56,7 +56,10 @@ $(window).load(function() {
     })
     .setTween(step1timeline)                                                    // Display broadcast to block
 	.on("leave", function (e) {
-		setTimeout(function() { step1timeline.seek(0) }, 500)
+		setTimeout(function() {
+		    step1timeline.progress(0);
+            TweenMax.to(".investmentProposalLine", 0.25, {autoAlpha:0});
+		}, 500)
 	})
     //.addIndicators({name: "Step 1: Request for Investment"})
     .addTo(controller);
@@ -101,11 +104,14 @@ $(window).load(function() {
     })
     .setTween(step2timeline)
 	.on("enter", function(){
-        step1timeline.seek("end")
-		step2timeline.restart()
+        step1timeline.seek("end");
+		step2timeline.restart();
     })
 	.on("leave", function (e) {
-		setTimeout(function() { step1timeline.seek(0) }, 500)
+	    setTimeout(function() {
+            step2timeline.progress(0);
+            step1timeline.seek(0);
+        }, 500);
 	})
     //.addIndicators({name: "Step 2: Contract Negotiation"})
     .addTo(controller);
@@ -136,7 +142,10 @@ $(window).load(function() {
 		step3timeline.restart()
     })
 	.on("leave", function (e) {
-		setTimeout(function() { step2timeline.seek(0) }, 500)
+	    setTimeout(function(){
+            step3timeline.progress(0);
+            step2timeline.seek(0);
+        }, 500);
 	})
 	//.addIndicators({name: "Step 3: Signing & Submission"})
 	.addTo(controller);
@@ -169,11 +178,14 @@ $(window).load(function() {
     })
     .setTween(step4timeline)
 	.on("enter", function(){
-        step3timeline.seek("end")
-		step4timeline.restart()
+        step3timeline.seek("end");
+		step4timeline.restart();
     })
 	.on("leave", function (e) {
-		setTimeout(function() { step3timeline.seek(0) }, 500)
+	    setTimeout(function(){
+            step4timeline.progress(0);
+            step3timeline.seek(0);
+        }, 500)
 	})
 	//.addIndicators({name: "Step 4: Fund Transfer & Disbursement"})
 	.addTo(controller);
@@ -207,22 +219,23 @@ $(window).load(function() {
         .add(showGoods)
         .add(showReceiptOfGoods)
         .add(hideGoods)
-		.add("end")
+		.add("end");
 
-	var scrollDirection = null
     new ScrollMagic.Scene({
         triggerElement: "#step5",
         offset: 100
     })
     .setTween(step5timeline)
 	.on("enter", function(e){
-        step4timeline.seek("end")
+        step4timeline.seek("end");
 		preStep5timeline.restart();
-		step5timeline.restart()
+		step5timeline.restart();
     })
 	.on("leave", function (e) {
-		step5timeline.pause(0)
-		setTimeout(function() { step4timeline.seek(0) }, 500)
+	    setTimeout(function(){
+            step5timeline.progress(0);
+            step4timeline.seek(0);
+        }, 500)
 	})
     //.addIndicators({name: "Step 5: Commodity Delivery"})
     .addTo(controller);
@@ -255,13 +268,18 @@ $(window).load(function() {
     })
     .setTween(step6timeline)
     .on("enter", function(){
-        step5timeline.pause(0)
+        step5timeline.pause(0);
 		step6timeline.restart()
     })
 	.on("leave", function (e) {
 		//step6timeline.pause()
 		// go back to end of 4, apply zoom, then play 5
-		setTimeout(function() { step4timeline.seek("end"); preStep5timeline.play(0); step5timeline.play(0); step6timeline.progress(0)}, 500)
+		setTimeout(function() {
+		    step4timeline.seek("end");
+		    preStep5timeline.play(0);
+		    step5timeline.play(0);
+		    step6timeline.progress(0)
+		}, 500)
 	})
     //.addIndicators({name: "Step 6: Contract Fulfillment & Payment"})
     .addTo(controller);
