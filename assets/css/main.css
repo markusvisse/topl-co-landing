@@ -4266,7 +4266,7 @@ h6.caps {
 	min-height: 100vh;
 }
 
-@media(max-width: 500px) {
+@media(max-width: 575px) {
 	#process .step > div {
 		margin-top: 65vh;
 		padding-top: 3vh;
@@ -4294,9 +4294,24 @@ h6.caps {
 	}
 }
 
-@media(min-width:500px) {
+@media(min-width:576px) {
 	#process .step {
 		min-height: 100vh;
 		padding-top: 7vh;
+	}
+}
+
+#block2 {
+	width: 95%;
+	margin: auto;
+}
+
+#block {
+	width: 100%;
+}
+
+@media(max-width: 991px) {
+	#block svg {
+		width: 150%;
 	}
 }

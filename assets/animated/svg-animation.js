@@ -2,7 +2,7 @@
 
 $(window).load(function() {
 
-    var isMobile = window.innerWidth <= 500;
+    var isMobile = window.innerWidth <= 575;
 
     if(!isMobile) {
         var $e = $("#e");

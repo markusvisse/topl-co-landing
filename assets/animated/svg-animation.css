@@ -5,11 +5,14 @@ svg > g  {
 svg {
     width: 100%;
     height: auto;
+
 }
 
 .mobile-svg svg {
     width: auto;
     height: 65vh;
+    margin: auto;
+    display: block;
 }
 
 #InvestorProducerLineGroup > line {
