@@ -54,7 +54,10 @@ $(window).load(function() {
         triggerElement: "#step1",
         offset: 200
     })
-    .setTween(step1timeline)                                                    // Display broadcast to block
+    .setTween(step1timeline)
+    .on("enter", function (e) {
+        step1timeline.restart();
+    })// Display broadcast to block
 	.on("leave", function (e) {
 		setTimeout(function() {
 		    step1timeline.progress(0);
@@ -289,7 +292,7 @@ $(window).load(function() {
         offset: "400",
 		duration: $("#step6").offset().top - $("#step1").offset().top + 100
     })
-    .setPin(window.innerHeight > 500 ? '#block' : '#block2')
+    .setPin(window.innerWidth > 500 ? '#block' : '#block2')
     //.addIndicators({name: "Pin Starts"})
     .addTo(controller);
 });
