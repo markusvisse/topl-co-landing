@@ -1714,6 +1714,10 @@ a {
 	text-decoration: none;
 }
 
+a:visited {
+	color: inherit;
+}
+
 .light a {
 	border-bottom: dotted 1px rgba(0,0,0,0.35);
 }
