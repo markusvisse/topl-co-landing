@@ -126,7 +126,7 @@ $(window).load(function() {
     })
     .setTween(step3timeline)
 	.on("enter", function(){
-        step2timeline.seek("end")
+        step2timeline.seek("end");
 		step3timeline.restart()
     })
 	.on("leave", function (e) {
@@ -144,15 +144,18 @@ $(window).load(function() {
     var showSafe = TweenMax.to("#SafeBox", 0.25, {autoAlpha: 1});
     var moveInvestorCoinIntoSafe = TweenMax.to("#ToplCoin_i", 0.5, {y: -80, autoAlpha: 0});
     var resetView = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "103.167 -50 339.302 536.125" }});
+    var moveInvestorCoinToProducer = TweenMax.to("#ToplCoin_i", 0.5, {y: -120, x:-200, autoAlpha: 1});
     // "approved"?
 
     step4timeline
         .add(zoomInOnInvestor)
         .add(showInvestorCoin)
         .add(showSafe)
+        .add(test)
         .add(moveInvestorCoinIntoSafe)
         .add(resetView)
-		.add("end")
+        .add(moveInvestorCoinToProducer)
+		.add("end");
 
 
     new ScrollMagic.Scene({
@@ -173,11 +176,13 @@ $(window).load(function() {
 
     /* Step 5: Commodity Delivery */
     var zoomInToProducer = TweenMax.to("#scene", 0.75, {attr:{ viewBox: "53.167 100 339.302 336.125" }});
-	
+	var hideInvestorCoin = TweenMax.to("#ToplCoin_i", 0.25, {autoAlpha: 0});
 
 	var preStep5timeline = new TimelineMax();
 	
-	preStep5timeline.add(zoomInToProducer);
+	preStep5timeline
+        .add(zoomInToProducer)
+        .add(hideInvestorCoin);
 
     var zoomInScene = new ScrollMagic.Scene({
         triggerElement: "#step5",
@@ -222,9 +227,9 @@ $(window).load(function() {
     var step6timeline = new TimelineMax();
 
     var zoomOutAll = TweenMax.to("#scene", 0.5, {attr:{ viewBox: "103.167 -50 339.302 536.125" }});
-    var showCoins = TweenMax.to(".coin", 0.5, {autoAlpha: 1});
-    var moveInvestorCoin = TweenMax.to("#ToplCoin_i", 0.5, {y:0});
     var hideSafe = TweenMax.to("#SafeBox", 0.5, {autoAlpha: 0});
+    var moveInvestorCoin = TweenMax.to("#ToplCoin_i", 0.01, {y:0, x:0});
+    var showCoins = TweenMax.to(".coin", 0.5, {autoAlpha: 1});
     var showReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha:1});
     var showReputationCaption = TweenMax.to(".reputationCaption", 0.5, {autoAlpha:1});
     var moveReputationGain = TweenMax.to(".reputationGain", 1, {autoAlpha: 0.85, y: -10, repeat: -1, yoyo: true});
@@ -232,9 +237,9 @@ $(window).load(function() {
     step6timeline
         .add(zoomOutAll)
         .add(hideGoods)
-        .add(showCoins)
-        .add(moveInvestorCoin)
         .add(hideSafe)
+        .add(moveInvestorCoin)
+        .add(showCoins)
         .add(showReputationGain)
         .add(showReputationCaption)
         .add(moveReputationGain);
