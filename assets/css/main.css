@@ -4319,3 +4319,13 @@ h6.caps {
 		width: 150%;
 	}
 }
+
+@media(min-width: 1920px) {
+	.hidden-xxl {
+		display: none;
+	}
+
+	.hidden-xl-down {
+		display: inline !important;
+	}
+}

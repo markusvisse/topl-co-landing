@@ -199,6 +199,11 @@ header h1 {
   padding-left: 0.23em;
 }
 
+.cd-timeline-img i.fa.fa-file-text {
+  padding-top: 0.3em;
+  padding-left: 0.45em;
+}
+
 .cd-timeline-img.cd-critical {
   background: #c03b44;
 }
