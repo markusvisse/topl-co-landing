@@ -2819,12 +2819,16 @@ ul.icons li:last-child {
 	padding-right: 0;
 }
 
-ul.icons li > a, ul.icons li > span {
+.icons a, .icons span {
 	border: 0;
 	text-decoration: none;
 }
 
-ul.icons li > a:before, ul.icons li > span:before {
+.icons a:hover {
+	color: #00a18e;
+}
+
+.icons a:before, .icons span:before {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	font-family: FontAwesome;
@@ -2833,7 +2837,7 @@ ul.icons li > a:before, ul.icons li > span:before {
 	text-transform: none !important;
 }
 
-ul.icons li > a .label, ul.icons li > span .label {
+.icons a .label, .icons span .label {
 	display: none;
 }
 
