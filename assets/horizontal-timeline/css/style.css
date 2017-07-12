@@ -110,6 +110,7 @@ Main Components
 .cd-horizontal-timeline .events a {
   position: absolute;
   bottom: 0;
+  border-bottom: none;
   z-index: 2;
   text-align: center;
   font-size: 0.7rem;
@@ -122,6 +123,8 @@ Main Components
   -o-transform: translateZ(0);
   transform: translateZ(0);
 }
+
+
 .cd-horizontal-timeline .events a::after {
   /* this is used to create the event spot */
   content: '';
@@ -143,6 +146,15 @@ Main Components
   -moz-transition: background-color 0.3s, border-color 0.3s;
   transition: background-color 0.3s, border-color 0.3s;
 }
+
+.cd-horizontal-timeline .events ol li:nth-child(even) a {
+  bottom: -56px;
+}
+
+.cd-horizontal-timeline .events ol li:nth-child(even) a::after {
+  bottom: 50px;
+}
+
 .no-touch .cd-horizontal-timeline .events a:hover::after {
   background-color: #7b9d6f;
   border-color: #7b9d6f;
