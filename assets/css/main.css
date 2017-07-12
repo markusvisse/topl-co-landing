@@ -2145,7 +2145,7 @@ button:hover:active:after,
 	flex-wrap: wrap;
 	border-radius: 0.25em;
 	border: solid 1px rgba(255, 255, 255, 0.15);
-	background: rgba(50, 50, 50, 0.05);
+	background: rgba(100, 100, 100, 0.05);
 	margin: 0 0 2em 0;
 }
 
