@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>  
+	<style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+    svg { width:100%; height: 100% }
+  </style>
+</head>
+
+<body>
+  <script>
+    var width = 960,
+    height = 500,
+    centered;
+    
+    var svg = d3.select("body").append("svg")
+    
+    var projection = d3.geo.mercator()
+      .scale(width / 2 / Math.PI)
+      //.scale(100)
+      .translate([width / 2, height / 2])
+
+    var path = d3.geo.path()
+      .projection(projection);
+	  
+    var g = svg.append('g');
+    
+    var effectLayer = g.append('g')
+      .classed('effect-layer', true);
+      
+    var mapLayer = g.append('g')
+      .classed('map-layer', true);
+      
+      var url = "world-110m.geojson";
+      d3.json(url, function(err, geojson) {
+    
+      var features = geojson.features;
+      var selectedCountries = ['USA', 'Netherlands', 'Ghana', 'Colombia', 'Fiji', 'India', 'Rwanda', 'South Africa'];
+      var selectedFeatures = features.filter(x => selectedCountries.includes(x.properties.name));
+      
+      var countryDescriptions = "countryDescriptions.json";
+      
+      mapLayer.selectAll('countries')
+      .data(selectedFeatures)
+        .enter()
+        .append('path')
+        .attr('d', path)
+        .attr('vector-effect', 'non-scaling-stroke')
+        .style('fill', '#FF0000')
+        .on('mouseover', mouseover)
+        .on('mouseout', mouseout)
+        .on('click', clicked)
+        
+      svg.append("path")
+        .attr('d', path(geojson))
+        .attr('d', mapLayer)
+        
+      });
+      
+      // When clicked, zoom in
+      function clicked(d) {
+        var x, y, k;
+
+      // Compute centroid of the selected path
+      if (d && centered !== d) {
+        var centroid = path.centroid(d);
+        x = centroid[0];
+        y = centroid[1];
+        k = 4;
+        centered = d;
+      } else {
+        x = width / 2;
+        y = height / 2;
+        k = 1;
+        centered = null;
+      }
+      // Highlight the clicked province
+      mapLayer.selectAll('path')
+        .style('fill', function(d){return centered && d===centered ? '#D5708B' : fillFn(d);});
+
+      // Zoom
+      g.transition()
+        .duration(750)
+        .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')scale(' + k + ')translate(' + -x + ',' + -y + ')');
+    }
+    
+    function mouseover(d, descriptions){
+      // Highlight hovered province
+      d3.select(this).style('fill', 'orange');
+      //d3.select(this)
+    }
+  
+    function mouseout(d){
+      // Reset province color
+      mapLayer.selectAll('path')
+        .style('fill', function(d){return centered && d===centered ? '#D5708B' : '#FF0000';});
+    }
+      
+    
+  </script>
+</body>

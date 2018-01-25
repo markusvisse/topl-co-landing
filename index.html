@@ -9,16 +9,18 @@
 		<title>Topl | Empowering Growth By Enabling Investment</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-    	<meta name="description" content="At the intersection of blockchain technology and the developing world, discover how Topl is working to unlock the greatest economic opportunity of the 21st century.">
+    <meta name="description" content="At the intersection of blockchain technology and the developing world, discover how Topl is working to unlock the greatest economic opportunity of the 21st century.">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="icon" href="images/favicon.ico">
 		<link rel="stylesheet" href="assets/horizontal-timeline/css/reset.css"> <!-- CSS reset -->
 		<link rel="stylesheet" href="assets/horizontal-timeline/css/style.css"> <!-- Resource style -->
+    <link rel="stylesheet" href="assets/css/leaflet.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link href="https://fonts.googleapis.com/css?family=Mukta+Vaani" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 		<script src="https://use.fontawesome.com/9fd58cfe9d.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -34,6 +36,7 @@
 				</a>
 				<nav>
 					<ul>
+						<li><a href="#worldMap">World Map</a></li>
 						<li><a href="#concept">Concept</a></li>
 						<li><a href="#features">Features</a></li>
 						<li><a href="#process">Process</a></li>
@@ -54,11 +57,99 @@
 					<h1><img src="images/transWhiteTextGreenLeaf.svg" style="width:40%"></h1>
 					<h3 style="opacity: 0.8">&nbsp;&nbsp;Empowering Growth By Enabling Investment</h3>
 					<br>
-					<ul class="actions">
-						<li><a href="#concept" class="button scrolly">Begin</a></li>
-					</ul>
+          <ul class="actions">
+            <li><a href="#worldMap" class="button scrolly">Begin</a></li>
+          </ul>
 				</div>
 			</section>
+      
+      <section id="worldMap" class="wrapper fullscreen light fade-up  ">
+          <script src="assets/js/leaflet.js"></script>
+            <div id="map" class="mapBorder"></div>
+              <script>
+                var map = L.map('map', {
+                  center: [50, 20],
+                  zoom: 2,
+                  preferCanvas: true,
+                  minZoom: 2,
+                  maxZoom: 4,
+                  maxBounds: [[100,-200],[-100, 200]]
+                });
+                
+                var popups = [];
+                var customId = 0;
+                var sideBarContent = '';
+    
+                function onEachFeature(feature, layer) {
+                  if (feature.properties.description) {
+                    var popup = layer.bindPopup(feature.properties.description, {closeOnClick: true, customId: customId});
+                    console.log(feature.id);
+                    popups.push({"name": layer.feature.properties.name, "id": layer.feature.id});
+                    layer.on("mouseover", function () {
+                      layer.openPopup();
+                      layer.setStyle({fillColor: "#66c6bb"});
+                    });
+                    /*layer.on("mouseout", function() {
+                      layer.closePopup();
+                      layer.setStyle({fillColor: "#00A18E"});
+                    });*/
+                    layer.on("click", function () {
+                      layer.openPopup();
+                      layer.setStyle({fillColor: "#66c6bb"});
+                    });
+                    layer.on("popupclose", function () {
+                      layer.setStyle({fillColor: "#00A18E"});
+                    });
+                  }
+                }
+
+                function popupClick(e) {
+                  //layer.togglePopup();
+                }
+                
+                $.getJSON("assets/world-map/world-110m.geojson", function(data) {
+                  L.geoJson(data, {
+                    style: function(feature) {
+                      var fillColor;
+                      if(feature.properties.description) {
+                        fillColor = "#00A18E";
+                      }
+                      else {
+                        fillColor = "#000000";
+                      }
+          
+                      return {fillColor: fillColor, color: "#222222", weight: 1, fillOpacity: 1};
+                    },
+                    onEachFeature: onEachFeature
+                  }).addTo(map)
+                }).done(function() {
+                    popups.forEach(function (item) {
+                      sideBarContent += '<a href="#' + item.id + '">' + item.name + '</a>';
+                    });
+                    
+                    sideBarContent += '';
+                    console.log(sideBarContent);
+                    
+                    countriesList.setContent(sideBarContent);
+                  });
+  
+  
+                  var CountriesList = L.Control.extend({
+                    options: {
+                      position: 'topleft'
+                    },
+                    onAdd: function () {
+                      return L.DomUtil.create('div', 'countriesList', L.DomUtil.get('map'));
+                    },
+                    setContent: function (content) {
+                      this.getContainer().innerHTML = content;
+                    }
+                  });
+  
+                  var countriesList = new CountriesList().addTo(map);
+              </script>
+      </section>
+      
 			<section id="concept" class="wrapper fullscreen light fade-up">
 				<div class="inner" style="padding-top:10%">
 					<div class="container">
@@ -354,7 +445,7 @@
 					</section>
 				</div>
 			</section>
-
+			
 			<section id="aboutUs" class="wrapper fullscreen style3 fade-up">
 				<div class="inner">
 					<h2>Team</h2>
@@ -571,7 +662,6 @@
 		</footer>
 
 		<!-- Scripts -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
