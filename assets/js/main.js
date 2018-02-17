@@ -249,9 +249,9 @@
 
             setTimeout(function() {
                 $('html, body').animate({
-                    scrollTop: $('#mainDescription').offset().top - 20
+                    scrollTop: $('#mainDescription').offset().top - window.innerWidth/10
                 }, 1000);
-			}, 200)
+	    }, 200)
 
         });
 
