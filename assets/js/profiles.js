@@ -5,10 +5,15 @@ function profileOnClick(img, name) {
   
   if(x.style.display === 'none') {
     x.style.display = 'flex';
-    newimg.style.borderBottom = '8px solid #00A18E';
-    newimg.style.paddingBottom = '5px';
   } else {
     x.style.display = 'none';
+  }
+  
+  if(newimg.style.borderBottom !== null && newimg.style.borderBottom !== 'none' && newimg.style.borderBottom !== '') {
+    newimg.style.borderBottom = 'none';
+  } else {
+    newimg.style.borderBottom = '8px solid #00A18E';
+    newimg.style.paddingBottom = '5px';
   }
   
   var openProfiles = document.getElementsByClassName('profileBio');
@@ -19,11 +24,11 @@ function profileOnClick(img, name) {
     }
   }
 
-  var openBorders = ['chris-img', 'jim-img', 'nick-img', 'kim-img', 'yamir-img', 'albert-img', 'alex-img', 'matt-img'];
+  var openBorders = ['chris-img', 'jim-img', 'nick-img', 'kim-img', 'yamir-img', 'albert-img', 'alex-img', 'matt-img', 'paige-img'];
+  openBorders.splice(openBorders.indexOf(img), 1);
   
   for(var i = 0; i < openBorders.length; i++) {
     var border = document.getElementById(openBorders[i]);
-    console.log(border);
     if(border.style.borderBottom !== null) {
       if(border.style.borderBottom !== 'none') {
         border.style.borderBottom = 'none';

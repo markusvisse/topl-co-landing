@@ -347,6 +347,52 @@ body {
 	margin-left: 8.33333%;
 }
 
+@media screen and (min-width: 1681px) {
+  .firstPhoto {
+  
+  }
+  
+  .secondPhoto {
+    margin-left: -2%;
+  }
+  
+  .thirdPhoto {
+    margin-left: -2%;
+  }
+  
+  .fourthPhoto {
+    margin-left: -2%;
+  }
+  
+  .img-clipped-1 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+  }
+  
+  .img-clipped-2 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+  }
+  
+  .img-clipped-3 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+  }
+  
+  .img-clipped-4 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
 @media screen and (max-width: 1680px) {
   
   .firstPhoto {
@@ -607,8 +653,52 @@ body {
 }
 
 @media screen and (max-width: 1280px) {
-
-	.row > * {
+  
+  .firstPhoto {
+  
+  }
+  
+  .secondPhoto {
+    margin-left: -2%;
+  }
+  
+  .thirdPhoto {
+  
+  }
+  
+  .fourthPhoto {
+    margin-left: -2%;
+  }
+  
+  .img-clipped-1 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+  }
+  
+  .img-clipped-2 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .img-clipped-3 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+  }
+  
+  .img-clipped-4 {
+    width: 120%;
+    height: auto;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .row > * {
 		padding: 0 0 0 1.5em;
 	}
 
@@ -828,7 +918,7 @@ body {
   }
   
   .secondPhoto {
-    margin-left: -9%;
+  
   }
   
   .thirdPhoto {
@@ -836,7 +926,7 @@ body {
   }
   
   .fourthPhoto {
-    margin-left: -9%;
+  
   }
   
   
@@ -846,9 +936,8 @@ body {
   }
   
   .img-clipped-2 {
-    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
-    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
-    margin-left: -9%;
+    -webkit-clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
   }
   
   .img-clipped-3 {
@@ -857,9 +946,8 @@ body {
   }
   
   .img-clipped-4 {
-    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
-    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
-    margin-left: -9%;
+    -webkit-clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
   }
   
 	.row > * {
@@ -1076,6 +1164,43 @@ body {
 }
 
 @media screen and (max-width: 736px) {
+  
+  .firstPhoto {
+    width: 100%;
+  }
+  
+  .secondPhoto {
+    width: 100%;
+  }
+  
+  .thirdPhoto {
+    width: 100%;
+  }
+  
+  .fourthPhoto {
+    width: 100%;
+  }
+  
+  
+  .img-clipped-1 {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .img-clipped-2 {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .img-clipped-3 {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .img-clipped-4 {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
 
 	.row > * {
 		padding: 0 0 0 1.5em;
