@@ -680,8 +680,8 @@ body {
   .img-clipped-2 {
     width: 120%;
     height: auto;
-    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
-    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
   }
   
   .img-clipped-3 {
