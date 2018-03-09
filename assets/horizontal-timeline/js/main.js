@@ -18,7 +18,7 @@ jQuery(document).ready(function($){
 			timelineComponents['timelineNavigation'] = timeline.find('.cd-timeline-navigation');
 			timelineComponents['eventsContent'] = timeline.children('.events-content');
 
-			//assign a left postion to the single events along the timeline
+			//assign a left position to the single events along the timeline
 			setDatePosition(timelineComponents, eventsMinDistance);
 			//assign a width to the timeline
 			var timelineTotWidth = setTimelineWidth(timelineComponents, eventsMinDistance);
