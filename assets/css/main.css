@@ -4456,6 +4456,18 @@ h6.caps {
   background: rgba(0,0,0,0.65);
 }
 
-.profileBio {
+.popOut :hover {
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(255,255,255,1);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(255,255,255,1);
+  box-shadow: -5px 5px 5px 0px rgba(255,255,255,1);
+}
 
+.circle {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  background: radial-gradient(#00a18e 40%, #493382 50%);
+  margin-left: 3em;
 }

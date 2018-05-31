@@ -24,7 +24,7 @@ function profileOnClick(img, name) {
     }
   }
 
-  var openBorders = ['chris-img', 'jim-img', 'nick-img', 'kim-img', 'yamir-img', 'albert-img', 'alex-img', 'matt-img', 'paige-img', 'oskar-img', 'anna-img', 'thomas-img', 'mitchell-img', 'gary-img'];
+  var openBorders = ['chris-img', 'jim-img', 'nick-img', 'kim-img', 'yamir-img', 'albert-img', 'alex-img', 'matt-img', 'paige-img', 'oskar-img', 'anna-img', 'thomas-img', 'mitchell-img', 'gary-img','kamanzi-img','max-img','katherine-img','dobelman-img'];
   openBorders.splice(openBorders.indexOf(img), 1);
 
   for (var i = 0; i < openBorders.length; i++) {
